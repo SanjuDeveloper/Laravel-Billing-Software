@@ -13,7 +13,20 @@ class UserController extends Controller
 
     public function adminLogin(Request $req)
     {
-       
+      
+      $user = usermodel::where("name",$req->input('name'))->first();
+      if(!$user || !Hash::check($req->password,$user->password)){
+        $response = array(
+           'Login'=>'Failed'
+        );
+      }else{
+        $response = array(
+          'Login'=>'Success'
+        );
+        $req->session()->put('user',$req->input('name'));
+      }
+      return json_encode($response);
+     
     }
 
     public function adminSignup(Request $post)

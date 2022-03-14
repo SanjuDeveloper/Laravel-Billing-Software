@@ -18,6 +18,7 @@
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <script src="assets/jquery/jquery.min.js"></script>
    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
    <style>
 	.notification .badge {
 	  position: absolute;
@@ -69,7 +70,7 @@
       <div class="list-group list-group-flush mt-5">
 	    <ul>
 		    <li class="">
-				<a href="dashboard.php">
+				<a href="{{ url('/dashboard') }}">
 					<i class="fa fa-home"></i>
 					<span>Home</span>
 				</a>
@@ -181,109 +182,7 @@
             
           </ul>
         </div>
-      </nav>
-	  
-	  <nav class="navbar navbar-expand-lg navbar-light border-bottom mobile">
-        <!--<button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>-->
-		<h3 style="text-shadow: 1px 1px 2px blue,0 0 0.2em darkblue;color: black;font-size: 30px;margin-left:30%;" class="text-uppercase">Billing Software</h3>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-		    <li class="nav-item">
-				<a href="dashboard.php" class="nav-link">
-					<i class="fa fa-home"></i>
-					<span>Home</span>
-				</a>
-			</li>
-			<hr class="hr-dashed hr-menu">
-			<li class="nav-item">
-				<a href="viewCat.php" class="nav-link">
-					<i class="fa fa-list-alt"></i>
-					<span>Category</span>
-				</a>
-			</li>
-			<hr class="hr-dashed hr-menu">
-		    <li class="nav-item">
-			<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-product-hunt"></i>
-					<span>Product</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" style="background-color:white;">
-                <a class="dropdown-item" href="upload-product.php"><i class="fa fa-plus" style="font-size:15px;"></i>Add Product</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="viewProducts.php"><i class="fa fa-eye" style="font-size:15px;"></i>View Product</a>
-              </div>			
-			</li>
-			<hr class="hr-dashed hr-menu">
-		    <li class="nav-item">
-			<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-institution"></i>
-					<span>Store</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" style="background-color:white;">
-                <a class="dropdown-item" href="productlist_catwise.php"><i class="fa fa-list" style="font-size:15px;"></i>Store Detail</a>				
-               <!-- <a class="dropdown-item" href="productlist_catwise.php">
-				<i class="fa fa-list" style="font-size:15px;"></i>Category Wise List</a>-->
-              </div>			
-			</li>
-			<hr class="hr-dashed hr-menu">
-			<li class="nav-item">
-				<a href="generate-bill.php" class="nav-link">
-					<i class="fa fa-fax"></i>
-					<span>Generate Bill</span>
-				</a>
-			</li>
-			<hr class="hr-dashed hr-menu">
-			<li class="nav-item dropdown">
-			<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-cogs"></i>
-					<span>Setting</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" style="background-color:white;">
-                <a class="dropdown-item" href="add-customer.php"><i class="fa fa-plus" style="font-size:15px;"></i>Add Customer</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="view-customer.php"><i class="fa fa-eye" style="font-size:15px;"></i>View Customer</a>
-				<div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="addusers.php"><i class="fa fa-plus" style="font-size:15px;"></i>Add User</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="view-user.php"><i class="fa fa-eye" style="font-size:15px;"></i>View User</a>
-              </div>		
-			</li>
-		    <li class="nav-item mr-2 dropdown bell">
-			   <a href="#" class=" nav-link notification" id="notice" data-toggle="dropdown">
-				  <i class="fa fa-bell"  style="color:blue"></i>
-				  
-				  <span class="badge" >SANJU111</span>
-				</a>
-				<div class="dropdown-menu" style="background-color:white;">
-					
-						<a class="dropdown-item"  data-value="1" onclick="me();">5</a>';
-				</div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" data-toggle="dropdown"><img src="images/user-icon.png" style="width:20px;height:20px"> <b>
-			 SANJU</b></a>
-			    <div class="dropdown-menu dropdown-menu-right" style="background-color:white;">
-					<a class="dropdown-item" href="">View Profile</a>
-					<a  class="dropdown-item"href="" data-toggle="modal" data-target="#myModal">Change Password</a>
-				 
-				  
-				</div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="logout.php"><img src="images/logout.png" style="width:20px;height:20px"> <b>Logout</b></a>
-            </li>
-			
-            
-          </ul>
-        </div>
-      </nav>
-	  
+      </nav>  
 	  <!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-md">
@@ -357,7 +256,7 @@
 			<div class="col-md-4">
 			  <p id="time"></p>
 			</div>
-			<div class="col-md-2"><p id="use">Login User: Sanju</p></div>
+			<div class="col-md-2"><p id="use">Login User: {{ session()->get('user') }}</p></div>
 			<div class="col-md-6 float-left"><p>@copyright <?= date('Y'); ?> Design by <a href="" target="_blank" class="text-white">Sanju Developer</p></a></div>
 		</div>
 	  </div>

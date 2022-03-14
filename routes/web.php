@@ -21,12 +21,12 @@ Route::get('/', function () {
     {
         return redirect('/dashboard');
     }
-    return view('login');
+    return view('account/login');
 });
 
 Route::post('/loginRequest', [UserController::class, 'adminLogin'])->name('loginRequest.post');
 Route::post('/signupRequest', [UserController::class, 'adminSignup'])->name('signupRequest.post');
-Route::view('/signup', 'signup');
+Route::view('/signup', 'account/signup');
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
     //Route::get('/user/{id}', [UserController::class, 'show']);
