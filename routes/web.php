@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Category\CategoryController;
 //use App\Http\Controllers;
 
 
@@ -28,10 +29,13 @@ Route::get('/', function () {
 Route::post('/loginRequest', [UserController::class, 'adminLogin'])->name('loginRequest.post');
 Route::post('/signupRequest', [UserController::class, 'adminSignup'])->name('signupRequest.post');
 Route::view('/signup', 'account/signup');
+
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
     Route::view('/addProduct', 'products/add');
+    Route::view('/addcategory', 'category/addCategory');
     Route::post('/addproduct', [ProductController::class, 'store'])->name('addproduct.post');
+    Route::post('/addcategory', [CategoryController::class, 'store'])->name('addpcategory.post');
     //Route::get('/user/{id}', [UserController::class, 'show']);
 
 });

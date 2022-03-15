@@ -78,11 +78,16 @@
 				</a>
 			</li>
 			<hr class="hr-dashed hr-menu">
-			<li class="">
-				<a href="viewCat.php">
+			<li class="sidebar-dropdown">
+				<a href="{{ url('/addcategory') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fa fa-list-alt"></i>
-					<span>Category</span>
+					<span>Category</span><i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
 				</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="{{ url('/addcategory') }}"><i class="fa fa-plus" style="font-size:15px;"></i>Add Category</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="viewProducts.php"><i class="fa fa-eye" style="font-size:15px;"></i>View Category</a>
+              </div>
 			</li>
 			<hr class="hr-dashed hr-menu">
 		    <li class="sidebar-dropdown">
@@ -320,7 +325,7 @@
                 + date.getSeconds()+" "+ampm;
                 $('#time').text(datetime);
         },1000);
-    });
+    }); 
 
 	$('#addproduct').submit(function() 
 	{
@@ -343,6 +348,47 @@
 		})
 		return false;
 	});
+	$('#addcat').submit(function() 
+	{
+		alert('alert')
+		
+		var form=this;
+		$.ajax({
+			type: 'POST',
+			url: "{{ route('addpcategory.post') }}",
+			data: new FormData(this),
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function (data)
+			{
+				var obj = JSON.parse(data);
+				if(obj.status === 'Success'){
+				swal("Success!", "Category Created Successfully!", "success");
+				const redirect = setTimeout(window.location.href="{{ url('/dashboard') }}", 2000);
+				// window.location.href="{{ url('/dashboard') }}";
+				} else{
+				swal({
+					title: "Signup Failed?",
+					text: "Somethiing went wrong. Please try again later!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+					window.location.href="{{ url('/addcategory') }}";
+					} else {
+					window.location.href="{{ url('/addcategory') }}";
+					}
+				});
+				}
+			}
+		})
+		return false;
+	});
+	
 
   </script>
   
