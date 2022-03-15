@@ -29,6 +29,7 @@ Route::post('/signupRequest', [UserController::class, 'adminSignup'])->name('sig
 Route::view('/signup', 'account/signup');
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
+    Route::view('/addProduct', 'products/add');
     //Route::get('/user/{id}', [UserController::class, 'show']);
 
 });

@@ -89,7 +89,7 @@
 					<span>Product</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="upload-product.php"><i class="fa fa-plus" style="font-size:15px;"></i>Add Product</a>
+                <a class="dropdown-item" href="{{ url('/addProduct') }}"><i class="fa fa-plus" style="font-size:15px;"></i>Add Product</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="viewProducts.php"><i class="fa fa-eye" style="font-size:15px;"></i>View Product</a>
               </div>			
