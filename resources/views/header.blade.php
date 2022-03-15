@@ -18,6 +18,8 @@
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <script src="assets/jquery/jquery.min.js"></script>
    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
    <style>
 	.notification .badge {
@@ -277,8 +279,28 @@
  
  <script>
 
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+
     $(function(){
 
+		$('.fa-plus').on('click',function(){
+		$('#ncate').css('display','block');
+		$('.fa-minus').css('display','block');
+		$('.fa-plus').css('display','none');
+		$('#cat').prop('disabled',true);
+		
+		});
+		$('.fa-minus').on('click',function(){
+		$('#ncate').css('display','none');
+		$('.fa-minus').css('display','none');
+		$('.fa-plus').css('display','block');
+		$('#cat').prop('disabled',false);
+		
+		});
     
        setInterval(function()
         { 
@@ -299,6 +321,29 @@
                 $('#time').text(datetime);
         },1000);
     });
+
+	$('#addproduct').submit(function() 
+	{
+		alert('alert')
+		
+		var form=this;
+		$.ajax({
+			type: 'POST',
+			url: "{{ route('addproduct.post') }}",
+			data: new FormData(this),
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function (data)
+			{
+				alert(data);
+				swal("Success!", "Product added successfully!", "success");
+			}
+		})
+		return false;
+	});
+
   </script>
   
 

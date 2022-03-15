@@ -18,7 +18,7 @@
 				
 			<!--<div class="container mt-2">--->
 			<!--<form method="POST" action="Action.php" enctype="multipart/form-data" class="form">-->
-			<form id="myform" class="form">
+			<form id="addproduct" class="form">
 			<input type="hidden" name="date" class="form-control" value="<?php  echo date('Y/m/d'); ?>" >
 			   <h3 style="text-shadow: 1px 1px 2px black,0 0 0.2em darkblue;color:#DC3545;font-size: 30px;"class="text-center"><u>Add Products</u></h3>
 		        <hr class="hr">
@@ -104,65 +104,4 @@
 		 
 			
 	    </div>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script>
-	$(function()
-	{
-		//alert("sanju");
-		$('.fa-plus').on('click',function(){
-		$('#ncate').css('display','block');
-		$('.fa-minus').css('display','block');
-		$('.fa-plus').css('display','none');
-		$('#cat').prop('disabled',true);
-		
-		});
-		$('.fa-minus').on('click',function(){
-		$('#ncate').css('display','none');
-		$('.fa-minus').css('display','none');
-		$('.fa-plus').css('display','block');
-		$('#cat').prop('disabled',false);
-		
-		});
-	});
-	
-	
-	
-	function redirect() {
-	  setTimeout(function()
-	  { 
-		window.location.href='viewProducts.php';
-	  },2000);
-	}
-	function reserform()
-	{
-	  document.getElementById("myform").reset();
-	 
-	}
-	$('#myform').submit(function() 
-	{
-		
-		var form=this;
-		$.ajax({
-			type: 'POST',
-			url: 'ajax.php',
-			data: new FormData(this),
-			async: false,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success: function (data)
-			{
-				$('.alert').css('display','block'); 
-				$('#sms').text(data);
-				reserform();
-				//window.location.href='viewProducts.php';
-				redirect();
-			}
-		})
-		return false;
-	});
-
-		
-	</script>
-
 @endsection
