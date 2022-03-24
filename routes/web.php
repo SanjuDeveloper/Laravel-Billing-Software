@@ -32,7 +32,6 @@ Route::view('/signup', 'account/signup');
 
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
-    //Route::view('/viewCategory', 'category/index');
     Route::view('/addcategory', 'category/addCategory');
     Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
     Route::get('/addProduct', [ProductController::class, 'get'])->name('addproduct.get');

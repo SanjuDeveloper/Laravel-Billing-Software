@@ -329,8 +329,6 @@
 
 	$('#addproduct').submit(function() 
 	{
-		alert('alert')
-		
 		var form=this;
 		$.ajax({
 			type: 'POST',
@@ -342,7 +340,26 @@
 			processData: false,
 			success: function (data)
 			{
-				alert(data);
+				var obj = JSON.parse(data);
+				if(obj.status === 'Success'){
+					swal("Success!", "Product added successfully!", "success");
+					//const redirect = setTimeout(window.location.href="{{ url('/viewCategory') }}", 2000);
+				} else{
+				swal({
+					title: "Signup Failed?",
+					text: "Somethiing went wrong. Please try again later!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+					window.location.href="{{ url('/addcategory') }}";
+					} else {
+					window.location.href="{{ url('/addcategory') }}";
+					}
+				});
+				}
 				swal("Success!", "Product added successfully!", "success");
 			}
 		})
@@ -365,8 +382,8 @@
 			{
 				var obj = JSON.parse(data);
 				if(obj.status === 'Success'){
-				swal("Success!", "Category Created Successfully!", "success");
-				const redirect = setTimeout(window.location.href="{{ url('/viewCategory') }}", 2000);
+				   swal("Success!", "Category Created Successfully!", "success");
+				   const redirect = setTimeout(window.location.href="{{ url('/viewCategory') }}", 2000);
 				} else{
 				swal({
 					title: "Signup Failed?",

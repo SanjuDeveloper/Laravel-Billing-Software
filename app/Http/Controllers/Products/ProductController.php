@@ -12,13 +12,22 @@ class ProductController extends Controller
     //
     public function store(Request $req)
     {
-       $code= $req->input('product_code');
-       $name= $req->input('product_name');
-       $ccategory= $req->input('category');
-       $price= $req->input('product_price');
-       $sellingPrice= $req->input('selling_price');
-       $Quentity= $req->input('total_product');
-       $description= $req->input('product_description');
+      //dd($req->input('product_code'));
+        $obj = new Products;  
+        $obj->product_code= $req->input('product_code');
+        $obj->product_name= $req->input('product_name');
+        $obj->category= $req->input('category');
+        $obj->product_price= $req->input('product_price');
+        $obj->selling_price= $req->input('selling_price');
+        $obj->total_product= $req->input('total_product');
+        $obj->product_description= $req->input('product_description');
+        $obj->save();
+        $response = array(
+               'insertId'=>$obj->id,
+               'status'=>'Success'
+       );  
+
+         return json_encode($response);    
        
     }
 
