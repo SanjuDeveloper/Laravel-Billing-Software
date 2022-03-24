@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Products;
+use App\Models\Categories;
 
 class ProductController extends Controller
 {
@@ -19,4 +21,10 @@ class ProductController extends Controller
        $description= $req->input('product_description');
        
     }
-}
+
+    public function get()
+    {
+        $categories = Categories::all();
+        return view('products.add', compact('categories'));
+    }
+} 

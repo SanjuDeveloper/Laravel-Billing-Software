@@ -32,8 +32,10 @@ Route::view('/signup', 'account/signup');
 
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
-    Route::view('/addProduct', 'products/add');
+    //Route::view('/viewCategory', 'category/index');
     Route::view('/addcategory', 'category/addCategory');
+    Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
+    Route::get('/addProduct', [ProductController::class, 'get'])->name('addproduct.get');
     Route::post('/addproduct', [ProductController::class, 'store'])->name('addproduct.post');
     Route::post('/addcategory', [CategoryController::class, 'store'])->name('addpcategory.post');
     //Route::get('/user/{id}', [UserController::class, 'show']);

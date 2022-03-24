@@ -18,8 +18,14 @@ class CategoryController extends Controller
         $response = array(
 				'insertId'=>$obj->id,
 				'status'=>'Success'
-            );
-           
-		return json_encode($response);    
+        );  
+
+		  return json_encode($response);    
+    }
+
+    public function get()
+    {
+      $categories = Categories::all();
+      return view('category.index', compact('categories'));
     }
 }

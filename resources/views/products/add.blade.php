@@ -44,10 +44,13 @@
 				<div class="row"> 
 				   <div class="col">
 				 	 <div class="form-group">
-						<label>Product Category</label>
+						<label>Product Category</label> 
 						<span class="eye" id="toggle_pwd"> <i  style="color:green;" class="fa fa-plus"  aria-hidden="true"></i><i  style="color:red;display:none" class="fa fa-minus"  aria-hidden="true"></i> </span>
 						<select class="form-control"  id="cat" name="category">
 						<option selected disabled>--Select--</option>
+						@foreach($categories as $cat)
+						<option> {{ $cat->catetory_name }} </option>
+						@endforeach
                         </select>
 					 </div> 
 				   </div>

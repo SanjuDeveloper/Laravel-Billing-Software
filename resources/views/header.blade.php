@@ -86,7 +86,7 @@
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="{{ url('/addcategory') }}"><i class="fa fa-plus" style="font-size:15px;"></i>Add Category</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="viewProducts.php"><i class="fa fa-eye" style="font-size:15px;"></i>View Category</a>
+					<a class="dropdown-item" href="{{ url('/viewCategory') }}"><i class="fa fa-eye" style="font-size:15px;"></i>View Category</a>
               </div>
 			</li>
 			<hr class="hr-dashed hr-menu">
@@ -366,8 +366,7 @@
 				var obj = JSON.parse(data);
 				if(obj.status === 'Success'){
 				swal("Success!", "Category Created Successfully!", "success");
-				const redirect = setTimeout(window.location.href="{{ url('/dashboard') }}", 2000);
-				// window.location.href="{{ url('/dashboard') }}";
+				const redirect = setTimeout(window.location.href="{{ url('/viewCategory') }}", 2000);
 				} else{
 				swal({
 					title: "Signup Failed?",
