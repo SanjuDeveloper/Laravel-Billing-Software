@@ -9,10 +9,14 @@ use App\Models\Categories;
 
 class ProductController extends Controller
 {
-    //
+    public function index()
+    {
+        $products = Products::all();
+        return view('products.index', compact('products'));
+    }
+
     public function store(Request $req)
     {
-      //dd($req->input('product_code'));
         $obj = new Products;  
         $obj->product_code= $req->input('product_code');
         $obj->product_name= $req->input('product_name');

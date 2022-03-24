@@ -98,7 +98,7 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ url('/addProduct') }}"><i class="fa fa-plus" style="font-size:15px;"></i>Add Product</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="viewProducts.php"><i class="fa fa-eye" style="font-size:15px;"></i>View Product</a>
+                <a class="dropdown-item" href="{{ url('/viewProduct') }}"><i class="fa fa-eye" style="font-size:15px;"></i>View Product</a>
               </div>			
 			</li>
 			<hr class="hr-dashed hr-menu">
