@@ -33,6 +33,7 @@ Route::view('/signup', 'account/signup');
 
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
+    Route::view('/bill', 'billGenerat/index');
     Route::view('/addcategory', 'category/addCategory');
     Route::get('/change',   [LangController::class, 'change'])->name('changeLang');  
     Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
