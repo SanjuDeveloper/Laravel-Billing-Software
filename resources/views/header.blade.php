@@ -80,31 +80,31 @@
 		    <li class="">
 				<a href="{{ url('/dashboard') }}">
 					<i class="fa fa-home"></i>
-					<span>Home</span>
+					<span>{{ __('app.common.home') }}</span>
 				</a>
 			</li>
 			<hr class="hr-dashed hr-menu">
 			<li class="sidebar-dropdown">
 				<a href="{{ url('/addcategory') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fa fa-list-alt"></i>
-					<span>Category</span><i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
+					<span>{{ __('app.common.category') }}</span><i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{{ url('/addcategory') }}"><i class="fa fa-plus" style="font-size:15px;"></i>Add Category</a>
+					<a class="dropdown-item" href="{{ url('/addcategory') }}"><i class="fa fa-plus" style="font-size:15px;"></i>{{ __('app.common.add-category') }}</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="{{ url('/viewCategory') }}"><i class="fa fa-eye" style="font-size:15px;"></i>View Category</a>
+					<a class="dropdown-item" href="{{ url('/viewCategory') }}"><i class="fa fa-eye" style="font-size:15px;"></i>{{ __('app.common.view-category') }}</a>
               </div>
 			</li>
 			<hr class="hr-dashed hr-menu">
 		    <li class="sidebar-dropdown">
 			<a class="" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-product-hunt"></i>
-					<span>Product</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
+					<span>{{ __('app.common.product') }}</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ url('/addProduct') }}"><i class="fa fa-plus" style="font-size:15px;"></i>Add Product</a>
+                <a class="dropdown-item" href="{{ url('/addProduct') }}"><i class="fa fa-plus" style="font-size:15px;"></i>{{ __('app.common.add-product') }}</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ url('/viewProduct') }}"><i class="fa fa-eye" style="font-size:15px;"></i>View Product</a>
+                <a class="dropdown-item" href="{{ url('/viewProduct') }}"><i class="fa fa-eye" style="font-size:15px;"></i>{{ __('app.common.view-product') }}</a>
               </div>			
 			</li>
 			<hr class="hr-dashed hr-menu">
@@ -114,7 +114,7 @@
 					<span>Store</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="productlist_catwise.php"><i class="fa fa-list" style="font-size:15px;"></i>Store Detail</a>				
+                <a class="dropdown-item" href="productlist_catwise.php"><i class="fa fa-list" style="font-size:15px;"></i>{{ __('app.common.store-details') }}</a>				
                <!-- <a class="dropdown-item" href="productlist_catwise.php">
 				<i class="fa fa-list" style="font-size:15px;"></i>Category Wise List</a>-->
               </div>			
@@ -123,23 +123,23 @@
 			<li class="">
 				<a href="generate-bill.php">
 					<i class="fa fa-fax"></i>
-					<span>Generate Bill</span>
+					<span>{{ __('app.common.generate-bill') }}</span>
 				</a>
 			</li>
 			<hr class="hr-dashed hr-menu">
 			<li class="sidebar-dropdown">
 			<a class="" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-cogs"></i>
-					<span>Setting</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
+					<span>{{ __('app.common.setting') }}</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="add-customer.php"><i class="fa fa-plus" style="font-size:15px;"></i>Add Customer</a>
+                <a class="dropdown-item" href="add-customer.php"><i class="fa fa-plus" style="font-size:15px;"></i>{{ __('app.common.add-customer') }}</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="view-customer.php"><i class="fa fa-eye" style="font-size:15px;"></i>View Customer</a>
+                <a class="dropdown-item" href="view-customer.php"><i class="fa fa-eye" style="font-size:15px;"></i>{{ __('app.common.view-customer') }}</a>
 				<div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="addusers.php"><i class="fa fa-plus" style="font-size:15px;"></i>Add User</a>
+                <a class="dropdown-item" href="addusers.php"><i class="fa fa-plus" style="font-size:15px;"></i>{{ __('app.common.add-user') }}</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="view-user.php"><i class="fa fa-eye" style="font-size:15px;"></i>View User</a>
+                <a class="dropdown-item" href="view-user.php"><i class="fa fa-eye" style="font-size:15px;"></i>{{ __('app.common.view-user') }}</a>
               </div>
 						
 			</li>
@@ -191,12 +191,12 @@
               <a class="nav-link" href="#" data-toggle="dropdown"><img src="images/user-icon.png" style="width:20px;height:20px"> <b>
 			  {{ session()->get('user') }}</b></a>
 			    <div class="dropdown-menu dropdown-menu-right" style="background-color:white;">
-					<a class="dropdown-item" href="">View Profile</a>
-					<a  class="dropdown-item"href="" data-toggle="modal" data-target="#myModal">Change Password</a>
+					<a class="dropdown-item" href="">{{ __('app.common.view-profile') }}</a>
+					<a  class="dropdown-item"href="" data-toggle="modal" data-target="#myModal">{{ __('app.common.change-password') }}</a>
 				</div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/logout') }}"><img src="images/logout.png" style="width:20px;height:20px"> <b>Logout</b></a>
+              <a class="nav-link" href="{{ url('/logout') }}"><img src="images/logout.png" style="width:20px;height:20px"> <b>{{ __('app.common.logout') }}</b></a>
             </li>
 			
             
