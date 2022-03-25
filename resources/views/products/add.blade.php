@@ -100,11 +100,5 @@
 							
 						</div>	
 		    </form>
-				
-	   <!-- </div>-->
-			
-			<!---  END CONTAINER --------------->
-		 
-			
 	    </div>
 @endsection

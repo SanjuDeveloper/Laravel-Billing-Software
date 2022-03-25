@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Billing Software</title>
+  <title>{{ __('app.common.title') }}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -20,6 +20,12 @@
    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}" />
+  	<script type="text/javascript">
+		var url = "{{ route('changeLang') }}";		
+			$(".changeLang").change(function(){
+				window.location.href = url + "?lang="+ $(this).val();
+			});
+	</script>
 
    <style>
 	.notification .badge {
@@ -153,7 +159,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-light border-bottom system">
         <!--<button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>-->
-		<h3 style="text-shadow: 1px 1px 2px blue,0 0 0.2em darkblue;color: black;font-size: 30px;margin-left:30%;" class="text-uppercase">Billing Software</h3>
+		<h3 style="text-shadow: 1px 1px 2px blue,0 0 0.2em darkblue;color: black;font-size: 30px;margin-left:30%;" class="text-uppercase">{{ __('app.common.title') }}</h3>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -162,7 +168,16 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-		    <li class="nav-item mr-2 dropdown bell">
+		    <li class="nav-item mr-2 dropdown bell">			   
+				
+				<select class="form-control changeLang nav-link notification"  data-toggle="dropdown">
+					<option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+					<option value="hi_IN" {{ session()->get('locale') == 'hi_IN' ? 'selected' : '' }}>Hindi</option>
+					<option value="sp" {{ session()->get('locale') == 'sp' ? 'selected' : '' }}>Spanish</option>
+				</select>
+				
+            </li>
+			<li class="nav-item mr-2 dropdown bell">
 			   <a href="#" class=" nav-link notification" id="notice" data-toggle="dropdown">
 				  <i class="fa fa-bell"  style="color:blue"></i>
 				  
@@ -178,8 +193,6 @@
 			    <div class="dropdown-menu dropdown-menu-right" style="background-color:white;">
 					<a class="dropdown-item" href="">View Profile</a>
 					<a  class="dropdown-item"href="" data-toggle="modal" data-target="#myModal">Change Password</a>
-				 
-				  
 				</div>
             </li>
             <li class="nav-item">
@@ -292,6 +305,11 @@
 
     $(function(){
 
+		var url = "{{ route('changeLang') }}";  
+		$(".changeLang").change(function(){
+			window.location.href = url + "?lang="+ $(this).val();
+		});
+
 		$('.fa-plus').on('click',function(){
 		$('#ncate').css('display','block');
 		$('.fa-minus').css('display','block');
@@ -343,7 +361,7 @@
 				var obj = JSON.parse(data);
 				if(obj.status === 'Success'){
 					swal("Success!", "Product added successfully!", "success");
-					//const redirect = setTimeout(window.location.href="{{ url('/viewCategory') }}", 2000);
+					//const redirect = setTimeout(window.location.href="{{ url('/viewProduct') }}", 9000);
 				} else{
 				swal({
 					title: "Signup Failed?",

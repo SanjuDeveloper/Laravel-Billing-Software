@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Locale\LangController;
 //use App\Http\Controllers;
 
 
@@ -33,6 +34,7 @@ Route::view('/signup', 'account/signup');
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
     Route::view('/addcategory', 'category/addCategory');
+    Route::get('/change',   [LangController::class, 'change'])->name('changeLang');  
     Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
     Route::get('/viewProduct', [ProductController::class, 'index'])->name('viewProduct.get');
     Route::get('/addProduct', [ProductController::class, 'get'])->name('addproduct.get');
