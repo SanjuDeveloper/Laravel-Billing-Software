@@ -276,8 +276,8 @@
 			<div class="col-md-4">
 			  <p id="time"></p>
 			</div>
-			<div class="col-md-2"><p id="use">Login User: {{ session()->get('user') }}</p></div>
-			<div class="col-md-6 float-left"><p>@copyright <?= date('Y'); ?> Design by <a href="" target="_blank" class="text-white">Sanju Developer</p></a></div>
+			<div class="col-md-2"><p id="use">{{ __('app.common.login-user') }}: {{ session()->get('user') }}</p></div>
+			<div class="col-md-6 float-left"><p>@ {{ __('app.common.copyright') }} <?= date('Y'); ?> {{ __('app.common.design-by') }} <a href="" target="_blank" class="text-white">Sanju Developer</p></a></div>
 		</div>
 	  </div>
       
@@ -311,18 +311,19 @@
 		});
 
 		$('.fa-plus').on('click',function(){
-		$('#ncate').css('display','block');
-		$('.fa-minus').css('display','block');
-		$('.fa-plus').css('display','none');
-		$('#cat').prop('disabled',true);
-		
+			$('#ncate').css('display','block');
+			$('.fa-minus').css('display','block');
+			$('.fa-plus').css('display','none');
+			$('#cat').prop('disabled',true);		
 		});
+
 		$('.fa-minus').on('click',function(){
-		$('#ncate').css('display','none');
-		$('.fa-minus').css('display','none');
-		$('.fa-plus').css('display','block');
-		$('#cat').prop('disabled',false);
-		
+			$('#ncate').css('display','none');
+			$('.fa-minus').css('display','none');
+			$('.fa-plus').css('display','block');
+			$('#cat').prop('disabled',false);
+			$('#ncate').prop('disabled',true);
+			$('#ncate').val('');		
 		});
     
        setInterval(function()
@@ -360,25 +361,34 @@
 			{
 				var obj = JSON.parse(data);
 				if(obj.status === 'Success'){
-					swal("Success!", "Product added successfully!", "success");
-					//const redirect = setTimeout(window.location.href="{{ url('/viewProduct') }}", 9000);
+					swal({
+					title: "Success!",
+					text: "Product added successfully!",
+					icon: "success",
+					successMode: true,
+					})
+					.then((willDelete) => {
+						if (willDelete) {
+							window.location.href="{{ url('/viewProduct') }}";
+						} 
+					});
 				} else{
-				swal({
-					title: "Signup Failed?",
-					text: "Somethiing went wrong. Please try again later!",
-					icon: "warning",
-					buttons: true,
-					dangerMode: true,
-				})
-				.then((willDelete) => {
-					if (willDelete) {
-					window.location.href="{{ url('/addcategory') }}";
-					} else {
-					window.location.href="{{ url('/addcategory') }}";
-					}
-				});
+					swal({
+						title: "Failed?",
+						text: "Somethiing went wrong. Please try again later!",
+						icon: "warning",
+						buttons: true,
+						dangerMode: true,
+					})
+					.then((willDelete) => {
+						if (willDelete) {
+						window.location.href="{{ url('/addcategory') }}";
+						} else {
+						window.location.href="{{ url('/addcategory') }}";
+						}
+					});
 				}
-				swal("Success!", "Product added successfully!", "success");
+				//swal("Success!", "Product added successfully!", "success");
 			}
 		})
 		return false;
