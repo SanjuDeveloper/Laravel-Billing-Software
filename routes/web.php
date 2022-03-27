@@ -35,17 +35,18 @@ Route::view('/signup', 'account/signup');
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
     Route::view('/bill', 'billGenerat/index');
+    Route::view('/main', 'main');
     Route::view('/customerAdd', 'customer/add');
     Route::view('/addcategory', 'category/addCategory');
     Route::get('/change',   [LangController::class, 'change'])->name('changeLang');  
-    Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
     Route::get('/viewProduct', [ProductController::class, 'index'])->name('viewProduct.get');
     Route::get('/addProduct', [ProductController::class, 'get'])->name('addproduct.get');
     Route::post('/addproduct', [ProductController::class, 'store'])->name('addproduct.post');
+    Route::get('/editProduct/{id}', [ProductController::class, 'edit']);
+    Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
     Route::post('/addcategory', [CategoryController::class, 'store'])->name('addpcategory.post');
     Route::post('/addcustomer', [CustomerController::class, 'store'])->name('addcustomer.post');
     Route::get('/viewcustomer', [CustomerController::class, 'get'])->name('addcustomer.get');
-    //Route::get('/user/{id}', [UserController::class, 'show']);
 
 });
 

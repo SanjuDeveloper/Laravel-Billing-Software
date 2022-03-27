@@ -12,9 +12,9 @@
   <title>{{ __('app.common.title') }}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
-  <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link href="{{ url('css/simple-sidebar.css') }}" rel="stylesheet">
   <script src="{{ url('assets/jquery/jquery.min.js') }}"></script>
    <script src="{{ url('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
    <script src="{{ url('assets/js/admin.js') }}"></script>
@@ -68,7 +68,7 @@
 	<div class="sticky-top" style="height:900px;">
     <div class="border-right fixed-left" id="sidebar-wrapper">
 	  
-      <div class="sidebar-heading"><img src="images/logo.png" class="img-responsive img-fluid"></div>
+      <div class="sidebar-heading"><a href="{{ url('/main') }}"><img src="images/logo.png" class="img-responsive img-fluid"></a></div>
       <div class="list-group list-group-flush mt-5">
 	    <ul>
 		    <li class="">

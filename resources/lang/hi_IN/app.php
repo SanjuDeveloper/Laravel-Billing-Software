@@ -12,6 +12,7 @@ return [
         'view-category'     => 'श्रेणी देखें',
         'product'           => 'उत्पाद',
         'add-product'      =>  'उत्पाद जोड़ें',
+        'edit-product'      => 'उत्पाद संपादित करें',
         'view-product'      => 'उत्पाद देखें',
         'Store'             => 'दुकान',
         'setting'           => 'समायोजन',
@@ -56,7 +57,7 @@ return [
         'name'              =>  'Name',
         'code'              =>  'ग्राहक क्रमांक',
         'add'               =>  'ग्राहक जोड़ें',
-        'reset'             => 'रीसेट',
+        'reset'             =>  'रीसेट',
 
     ],
   

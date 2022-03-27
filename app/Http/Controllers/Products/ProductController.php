@@ -57,9 +57,29 @@ class ProductController extends Controller
        
     }
 
+     /**
+     * get all categories
+     *
+     * * Returns categories
+     */
     public function get()
     {
         $categories = Categories::all();
         return view('products.add', compact('categories'));
+    }
+
+      /**
+     * get all products by id
+     *
+     * * Returns a product
+     */
+    public function edit($id)
+    {
+        $product = Products::join('categories', 'products.category', '=', 'categories.id')
+               ->get(['products.*', 'categories.*'])->find($id);
+        
+       // $product = Products::find($id);
+        return view('products.edit', compact('product'));
+
     }
 } 

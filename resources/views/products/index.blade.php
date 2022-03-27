@@ -38,20 +38,49 @@ table.gridtable {
 				<tr>
 					
 					<td>{{ $count}} </td>
-					<td>{{$product->product_code}} </td>
-					<td>{{$product->product_name}} </td>
-					<td>{{$product->catetory_name}} </td>
-                    <td>{{$product->product_price}} </td>
-                    <td>{{$product->selling_price}} </td>
-                    <td>{{$product->total_product}} </td>
-                    <td>{{$product->product_description}} </td>
+					<td>{{ $product->product_code}} </td>
+					<td>{{ $product->product_name}} </td>
+					<td>{{ $product->catetory_name}} </td>
+                    <td>{{ $product->product_price}} </td>
+                    <td>{{ $product->selling_price}} </td>
+                    <td>{{ $product->total_product}} </td>
+                    <td>{{ $product->product_description}} </td>
 					<td>{{ $product->created_at }} </td>
-					<td><input type="submit" class="btn btn-primary sm" value="{{__('app.common.edit') }}"></td>
+					<td><a href="{{ url('/editProduct/'.$product->id) }}"  data-toggle="modal" data-target="#exampleModal" class="btn btn-primary sm">{{__('app.common.edit') }} </a>
 				</tr>
 				<?php $count++; ?>
 			@endforeach			
             </tbody>			
 		   </table>		
 	    </div>
+		<!------------- MODEL  BOX START --------------------->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+				<div class="form-group">
+					<label for="recipient-name" class="col-form-label">Recipient:</label>
+					<input type="text" class="form-control" id="recipient-name">
+				</div>
+				<div class="form-group">
+					<label for="message-text" class="col-form-label">Message:</label>
+					<textarea class="form-control" id="message-text"></textarea>
+				</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Send message</button>
+			</div>
+			</div>
+ 		</div>
+	</div>
 		
 @endsection

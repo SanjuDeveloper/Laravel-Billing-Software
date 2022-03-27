@@ -11,6 +11,7 @@ return [
         'view-category'     =>  'View Category',
         'product'           =>  'Product',
         'add-product'       =>  'Add Products',
+        'edit-product'       => 'Edit Products',
         'view-product'      =>  'View Products',
         'Store'             =>  'Store',
         'store-detail'      =>  'Store Detail',
@@ -31,6 +32,7 @@ return [
         'date'              =>  'Date',
         'action'            =>  'Action',
         'edit'              => 'Edit',
+        'export-excel'      => 'Export to Excel',
     ],
 
     'products' => [
@@ -54,7 +56,7 @@ return [
         'name'              =>  'Name',
         'code'              =>  'Customer code',
         'add'               =>  'Add Customer',
-        'reset'             => 'Reset',
+        'reset'             =>  'Reset',
 
     ],
   
