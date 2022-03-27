@@ -129,7 +129,7 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ url('/customerAdd') }}"><i class="fa fa-plus" style="font-size:15px;"></i>{{ __('app.common.add-customer') }}</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="view-customer.php"><i class="fa fa-eye" style="font-size:15px;"></i>{{ __('app.common.view-customer') }}</a>
+                <a class="dropdown-item" href="{{ url('/viewcustomer') }}"><i class="fa fa-eye" style="font-size:15px;"></i>{{ __('app.common.view-customer') }}</a>
 				<div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="addusers.php"><i class="fa fa-plus" style="font-size:15px;"></i>{{ __('app.common.add-user') }}</a>
                 <div class="dropdown-divider"></div>
@@ -416,7 +416,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location.href="{{ url('/viewCategory') }}";
+                        window.location.href="{{ url('/viewcustomer') }}";
                     } 
                 });
             } else{
@@ -429,9 +429,9 @@
             })
             .then((willDelete) => {
                 if (willDelete) {
-                window.location.href="{{ url('/addcategory') }}";
+                window.location.href="{{ url('/addcustomer') }}";
                 } else {
-                window.location.href="{{ url('/addcategory') }}";
+                window.location.href="{{ url('/addcustomer') }}";
                 }
             });
             }

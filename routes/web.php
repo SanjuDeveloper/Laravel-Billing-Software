@@ -44,6 +44,7 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::post('/addproduct', [ProductController::class, 'store'])->name('addproduct.post');
     Route::post('/addcategory', [CategoryController::class, 'store'])->name('addpcategory.post');
     Route::post('/addcustomer', [CustomerController::class, 'store'])->name('addcustomer.post');
+    Route::get('/viewcustomer', [CustomerController::class, 'get'])->name('addcustomer.get');
     //Route::get('/user/{id}', [UserController::class, 'show']);
 
 });

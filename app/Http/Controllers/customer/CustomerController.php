@@ -24,4 +24,10 @@ class CustomerController extends Controller
 
       return json_encode($response);  
    }
+
+   public function get()
+   {
+        $customers = customers::all();
+        return view('customer.index', compact('customers'));
+   }
 }
