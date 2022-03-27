@@ -46,6 +46,17 @@ return [
         'product-name'      =>  'Product Name',
        
     ],
+
+    'customer' => [
+        'address'           =>  "Address",
+        'email'             =>  'Email',
+        'phone'             =>  'Phone',
+        'name'              =>  'Name',
+        'code'              =>  'Customer code',
+        'add'               =>  'Add Customer',
+        'reset'             => 'Reset',
+
+    ],
   
   
 ];

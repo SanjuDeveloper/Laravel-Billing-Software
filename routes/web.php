@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\Locale\LangController;
 //use App\Http\Controllers;
 
@@ -34,6 +35,7 @@ Route::view('/signup', 'account/signup');
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
     Route::view('/bill', 'billGenerat/index');
+    Route::view('/customerAdd', 'customer/add');
     Route::view('/addcategory', 'category/addCategory');
     Route::get('/change',   [LangController::class, 'change'])->name('changeLang');  
     Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
@@ -41,6 +43,7 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::get('/addProduct', [ProductController::class, 'get'])->name('addproduct.get');
     Route::post('/addproduct', [ProductController::class, 'store'])->name('addproduct.post');
     Route::post('/addcategory', [CategoryController::class, 'store'])->name('addpcategory.post');
+    Route::post('/addcustomer', [CustomerController::class, 'store'])->name('addcustomer.post');
     //Route::get('/user/{id}', [UserController::class, 'show']);
 
 });

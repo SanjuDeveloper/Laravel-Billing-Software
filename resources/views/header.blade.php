@@ -127,7 +127,7 @@
 					<span>{{ __('app.common.setting') }}</span> <i class="fa fa-caret-right float-right pt-2" style="font-size:15px;"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="add-customer.php"><i class="fa fa-plus" style="font-size:15px;"></i>{{ __('app.common.add-customer') }}</a>
+                <a class="dropdown-item" href="{{ url('/customerAdd') }}"><i class="fa fa-plus" style="font-size:15px;"></i>{{ __('app.common.add-customer') }}</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="view-customer.php"><i class="fa fa-eye" style="font-size:15px;"></i>{{ __('app.common.view-customer') }}</a>
 				<div class="dropdown-divider"></div>
@@ -289,98 +289,155 @@
 		});
 	</script>
 </body>
-	<script>
+<script>
 
 	$.ajaxSetup({
 		headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		}
 	});
+
 	$('#addproduct').submit(function() 
     {
-        var form=this;
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('addproduct.post') }}",
-            data: new FormData(this),
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data)
-            {
-                var obj = JSON.parse(data);
-                if(obj.status === 'Success'){
-                    swal({
-                    title: "Success!",
-                    text: "Product added successfully!",
-                    icon: "success",
-                    successMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            window.location.href="{{ url('/viewProduct') }}";
-                        } 
-                    });
-                } else{
-                    swal({
-                        title: "Failed?",
-                        text: "Somethiing went wrong. Please try again later!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                        window.location.href="{{ url('/addcategory') }}";
-                        } else {
-                        window.location.href="{{ url('/addcategory') }}";
-                        }
-                    });
-                }
-                //swal("Success!", "Product added successfully!", "success");
-            }
-        })
-      return false;
-    });
+      var form=this;
+      $.ajax({
+          type: 'POST',
+          url: "{{ route('addproduct.post') }}",
+          data: new FormData(this),
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data)
+          {
+              var obj = JSON.parse(data);
+              if(obj.status === 'Success'){
+                  swal({
+                  title: "Success!",
+                  text: "Product added successfully!",
+                  icon: "success",
+                  successMode: true,
+                  })
+                  .then((willDelete) => {
+                      if (willDelete) {
+                          window.location.href="{{ url('/viewProduct') }}";
+                      } 
+                  });
+              } else{
+                  swal({
+                      title: "Failed?",
+                      text: "Somethiing went wrong. Please try again later!",
+                      icon: "warning",
+                      buttons: true,
+                      dangerMode: true,
+                  })
+                  .then((willDelete) => {
+                      if (willDelete) {
+                      window.location.href="{{ url('/addcategory') }}";
+                      } else {
+                      window.location.href="{{ url('/addcategory') }}";
+                      }
+                  });
+              }
+              //swal("Success!", "Product added successfully!", "success");
+          }
+      })
+    return false;
+  });
 
-    $('#addcat').submit(function() 
-    {
-        var form=this;
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('addpcategory.post') }}",
-            data: new FormData(this),
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data)
-            {
-                var obj = JSON.parse(data);
-                if(obj.status === 'Success'){
-                swal("Success!", "Category Created Successfully!", "success");
-                const redirect = setTimeout(window.location.href="{{ url('/viewCategory') }}", 2000);
-                } else{
+  $('#addcat').submit(function() 
+  {
+      var form=this;
+      $.ajax({
+          type: 'POST',
+          url: "{{ route('addpcategory.post') }}",
+          data: new FormData(this),
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data)
+          {
+              var obj = JSON.parse(data);
+              if(obj.status === 'Success')
+              {
                 swal({
-                    title: "Signup Failed?",
-                    text: "Somethiing went wrong. Please try again later!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
+                  title: "Success!",
+                  text: "Category Created Successfully!",
+                  icon: "success",
+                  successMode: true,
+                  })
+                  .then((willDelete) => {
+                      if (willDelete) {
+                          window.location.href="{{ url('/viewCategory') }}";
+                      } 
+                  });
+              } else{
+              swal({
+                  title: "Signup Failed?",
+                  text: "Somethiing went wrong. Please try again later!",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+              })
+              .then((willDelete) => {
+                  if (willDelete) {
+                  window.location.href="{{ url('/addcategory') }}";
+                  } else {
+                  window.location.href="{{ url('/addcategory') }}";
+                  }
+              });
+              }
+          }
+      })
+      return false;
+  });
+
+  $('#customer-add').submit(function() 
+  {
+      var form=this;
+      $.ajax({
+          type: 'POST',
+          url: "{{ route('addcustomer.post') }}",
+          data: new FormData(this),
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data)
+          {
+            var obj = JSON.parse(data);
+            if(obj.status === 'Success'){
+              swal({
+                title: "Success!",
+                text: "Customer Created Successfully!",
+                icon: "success",
+                successMode: true,
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                    window.location.href="{{ url('/addcategory') }}";
-                    } else {
-                    window.location.href="{{ url('/addcategory') }}";
-                    }
+                        window.location.href="{{ url('/viewCategory') }}";
+                    } 
                 });
+            } else{
+            swal({
+                title: "Signup Failed?",
+                text: "Somethiing went wrong. Please try again later!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                window.location.href="{{ url('/addcategory') }}";
+                } else {
+                window.location.href="{{ url('/addcategory') }}";
                 }
+            });
             }
-        })
-        return false;
-    });
-
+          }
+      })
+      return false;
+  });
 	</script>
 </html>

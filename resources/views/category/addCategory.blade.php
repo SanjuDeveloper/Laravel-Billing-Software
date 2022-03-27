@@ -14,7 +14,7 @@
 		
     <div class="container-fluid" style="height:780px;padding:0 10%;overflow:auto;border-bottom:2px solid red;">
         <form id="addcat" class="form">			
-            <h3 style="text-shadow: 1px 1px 2px black,0 0 0.2em darkblue;color:#DC3545;font-size: 30px;"class="text-center"><u>Add Products</u></h3>
+            <h3 style="text-shadow: 1px 1px 2px black,0 0 0.2em darkblue;color:#DC3545;font-size: 30px;"class="text-center"><u>Add Category</u></h3>
             <hr class="hr">
             <div class="row">
                 <div class="col">
