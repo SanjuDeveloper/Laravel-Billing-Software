@@ -46,8 +46,31 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
+                        <!-- App Locale -->
                         <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span style="color:#222042;"> Locale<i class="fas fa-flag fa-fw"></i></span>
+                                <!-- Counter - Alerts -->
+                                <!-- <span class="badge badge-primary badge-counter">{{ session()->get('locale') }}</span> -->
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                   Select Locale
+                                </h6>
+                                <select class="form-control changeLang dropdown-item d-flex align-items-center"  data-toggle="dropdown">
+                                    <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+                                    <option value="hi_IN" {{ session()->get('locale') == 'hi_IN' ? 'selected' : '' }}>Hindi</option>
+                                    <option value="sp" {{ session()->get('locale') == 'sp' ? 'selected' : '' }}>Spanish</option>
+                                </select>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+                          <!-- Nav Item - Alerts -->
+                          <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
