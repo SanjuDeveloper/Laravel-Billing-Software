@@ -64,6 +64,7 @@
 	var tableData = [];
 $(document).on('click','#tbody .dett',function(){
 	$(this).find('td').each(function(){
+		//alert($(this).text());
 		tableData.push($(this).text().split(' ')[0]);
 	});
 	//console.log(tableData);
@@ -75,6 +76,7 @@ $(document).on('click','#tbody .dett',function(){
 	$('#sellingPrice').val(tableData[5]);
 	$('#Quantity').val(tableData[6]);
 	$('#message-text').text(tableData[7]);
+	tableData.length = 0;
 });
 </script>
 
@@ -88,8 +90,8 @@ $(document).on('click','#tbody .dett',function(){
 				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
-				<form id="updateproduct" class="form">
+			<form id="updateproduct" class="form">
+				<div class="modal-body">				
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-code') }}:</label>
@@ -126,13 +128,13 @@ $(document).on('click','#tbody .dett',function(){
 							<label for="message-text" class="col-form-label">{{ __('app.products.product-desc') }}:</label>
 							<textarea class="form-control" id="message-text" name="product_description"></textarea>
 						</div>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('app.common.close') }}</button>
-				<button type="button" class="btn btn-primary">{{ __('app.products.submit') }}</button>
-			</div>
+					</div>				
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-secondary" id="closebtn"  data-dismiss="modal" value="{{ __('app.common.close') }}" >
+					<input type="submit" class="btn btn-primary" name="submit" value="{{ __('app.products.submit') }}">
+				</div>
+			</form>
 			</div>
  		</div>
 	</div>

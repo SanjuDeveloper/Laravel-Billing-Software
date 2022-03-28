@@ -43,6 +43,7 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::get('/addProduct', [ProductController::class, 'get'])->name('addproduct.get');
     Route::post('/addproduct', [ProductController::class, 'store'])->name('addproduct.post');
     Route::get('/editProduct/{id}', [ProductController::class, 'edit']);
+    Route::post('/updateProduct', [ProductController::class, 'update'])->name('updateProduct.post');
     Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
     Route::post('/addcategory', [CategoryController::class, 'store'])->name('addpcategory.post');
     Route::post('/addcustomer', [CustomerController::class, 'store'])->name('addcustomer.post');

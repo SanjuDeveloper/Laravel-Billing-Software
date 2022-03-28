@@ -439,5 +439,55 @@
       })
       return false;
   });
+
+
+  $('#updateproduct').submit(function() 
+  {
+      var form=this;
+      $.ajax({
+          type: 'POST',
+          url: "{{ route('updateProduct.post') }}",
+          data: new FormData(this),
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data)
+          {
+            //$('#closebtn').click();           
+            var obj = JSON.parse(data);
+            if(obj.status === 'Success'){
+              $('#closebtn').click();
+              swal({
+                title: "Success!",
+                text: "Product Updated Successfully!",
+                icon: "success",
+                successMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href="{{ url('/viewProduct') }}";
+                    } 
+                });
+            } else{
+            swal({
+                title: "Signup Failed?",
+                text: "Somethiing went wrong. Please try again later!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                window.location.href="{{ url('/viewProduct') }}";
+                } else {
+                window.location.href="{{ url('/viewProduct') }}";
+                }
+            });
+            }
+          }
+      })
+      return false;
+  });
 	</script>
 </html>

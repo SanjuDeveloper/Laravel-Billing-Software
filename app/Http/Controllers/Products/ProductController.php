@@ -82,4 +82,29 @@ class ProductController extends Controller
         return view('products.edit', compact('product'));
 
     }
+
+     /**
+     * update the products.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function update(Request $req)
+    {
+       $productId = $req->input('productId');
+        $obj = Products::find($productId);  
+        $obj->product_code= $req->input('product_code');
+        $obj->product_name= $req->input('product_name');
+        $obj->category= $req->input('category');
+        $obj->product_price= $req->input('unit_price');
+        $obj->selling_price= $req->input('selling_price');
+        $obj->total_product= $req->input('quantity');
+        $obj->product_description= $req->input('product_description');
+        $obj->update();
+        $response = array(
+               'insertId'=>$obj->id,
+               'status'=>'Success'
+       );  
+
+         return json_encode($response);   
+    }
 } 
