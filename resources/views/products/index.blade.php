@@ -1,13 +1,14 @@
 @extends('header')
 @section('Section') 
 <style>
-table.gridtable {
-	
-	font-family: tahoma;
-	line-height:15px;
-	border-collapse: collapse;
-	
-}</style>
+	table.gridtable {
+		
+		font-family: tahoma;
+		line-height:15px;
+		border-collapse: collapse;
+		
+	}
+</style>
 		
 		<div class="container mt-5">
 			<div class="row mb-4">
@@ -54,6 +55,12 @@ table.gridtable {
 		   </table>		
 	    </div>
 <script>
+	function blink_text() {
+		$('.modal-title').fadeOut(500);
+		$('.modal-title').fadeIn(500);
+	}
+	setInterval(blink_text, 1000);
+
 	var tableData = [];
 $(document).on('click','#tbody .dett',function(){
 	$(this).find('td').each(function(){
@@ -72,17 +79,17 @@ $(document).on('click','#tbody .dett',function(){
 </script>
 
 		<!------------- MODEL  BOX START --------------------->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="editProduct" aria-hidden="true">
 		<div class="modal-dialog" role="document" >
 			<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">{{ __('app.products.title') }}</h5>
+				<h5 class="modal-title text-danger" id="editProduct">{{ __('app.products.title') }}</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form>
+				<form id="updateproduct" class="form">
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-code') }}:</label>
