@@ -33,10 +33,11 @@ return [
         'action'            =>  'Action',
         'edit'              => 'Edit',
         'export-excel'      => 'Export to Excel',
+        'close'             => 'Close',
     ],
 
     'products' => [
-        'title'             =>  "Billing Software",
+        'title'             =>  "Edit Product",
         'unit-price'        =>  'Unit Price',
         'selling-price'     =>  'Selling Price',
         'total-products'    =>  'Quantity',

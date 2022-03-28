@@ -34,10 +34,11 @@ return [
         'action'            => 'कार्य',
         'edit'              => 'संपादित करें',
         'export-excel'      => 'एक्सेल में निर्यात करें',
+        'close'             => 'बंद करना',
     ],
 
     'products' => [
-        'title'             =>  "Billing Software",
+        'title'             =>  "उत्पाद संपादित करें",
         'unit-price'        =>  'यूनिट मूल्य',
         'selling-price'     =>  'विक्रय मूल्य',
         'total-products'    =>  'उत्पादों की कुल संख्या',

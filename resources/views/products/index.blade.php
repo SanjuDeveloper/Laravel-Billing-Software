@@ -32,13 +32,13 @@ table.gridtable {
 			    <th>{{ __('app.common.action') }}</th>
 			 </tr>
 			</thead>
-            <tbody>
+            <tbody  id="tbody">
 				<?php $count=1; ?>
 			@foreach($products as $product)
-				<tr>
+				<tr class="dett" id="{{ $product->id }}">
 					
 					<td>{{ $count}} </td>
-					<td>{{ $product->product_code}} </td>
+					<td >{{ $product->product_code}} </td>
 					<td>{{ $product->product_name}} </td>
 					<td>{{ $product->catetory_name}} </td>
                     <td>{{ $product->product_price}} </td>
@@ -46,38 +46,85 @@ table.gridtable {
                     <td>{{ $product->total_product}} </td>
                     <td>{{ $product->product_description}} </td>
 					<td>{{ $product->created_at }} </td>
-					<td><a href="{{ url('/editProduct/'.$product->id) }}"  data-toggle="modal" data-target="#exampleModal" class="btn btn-primary sm">{{__('app.common.edit') }} </a>
+					<td><a  href="{{ url('/editProduct/'.$product->id) }}"  data-toggle="modal" data-target="#exampleModal" class="btn btn-primary sm">{{__('app.common.edit') }} </a>
 				</tr>
 				<?php $count++; ?>
 			@endforeach			
             </tbody>			
 		   </table>		
 	    </div>
+<script>
+	var tableData = [];
+$(document).on('click','#tbody .dett',function(){
+	$(this).find('td').each(function(){
+		tableData.push($(this).text().split(' ')[0]);
+	});
+	//console.log(tableData);
+	$('#pId').val($(this).attr('id'));
+	$('#productCode').val(tableData[1]);
+	$('#productname').val(tableData[2]);
+	$('#Pcategory').val(tableData[3]);
+	$('#unitPrice').val(tableData[4]);
+	$('#sellingPrice').val(tableData[5]);
+	$('#Quantity').val(tableData[6]);
+	$('#message-text').text(tableData[7]);
+});
+</script>
+
 		<!------------- MODEL  BOX START --------------------->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document" >
 			<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+				<h5 class="modal-title" id="exampleModalLabel">{{ __('app.products.title') }}</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
 				<form>
-				<div class="form-group">
-					<label for="recipient-name" class="col-form-label">Recipient:</label>
-					<input type="text" class="form-control" id="recipient-name">
-				</div>
-				<div class="form-group">
-					<label for="message-text" class="col-form-label">Message:</label>
-					<textarea class="form-control" id="message-text"></textarea>
-				</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-code') }}:</label>
+							<input type="text" class="form-control" name="product_code" id="productCode">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-name') }}:</label>
+							<input type="text" class="form-control" name="product_name" id="productname">
+							<input type="hidden" name="productId" id="pId">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-cate') }}:</label>
+							<input type="text" class="form-control" name="category" id="Pcategory">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-price') }}:</label>
+							<input type="text" class="form-control" name="unit_price" id="unitPrice">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="recipient-name" class="col-form-label">{{ __('app.products.selling-price') }}:</label>
+							<input type="text" class="form-control" name="selling_price" id="sellingPrice">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="recipient-name" class="col-form-label">{{ __('app.products.total-products') }}:</label>
+							<input type="text" class="form-control" name="quantity" id="Quantity">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="message-text" class="col-form-label">{{ __('app.products.product-desc') }}:</label>
+							<textarea class="form-control" id="message-text" name="product_description"></textarea>
+						</div>
+					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Send message</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('app.common.close') }}</button>
+				<button type="button" class="btn btn-primary">{{ __('app.products.submit') }}</button>
 			</div>
 			</div>
  		</div>
