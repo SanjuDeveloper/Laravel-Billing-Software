@@ -67,7 +67,7 @@ $(document).on('click','#tbody .dett',function(){
 		//alert($(this).text());
 		tableData.push($(this).text().split(' ')[0]);
 	});
-	//console.log(tableData);
+	
 	$('#pId').val($(this).attr('id'));
 	$('#productCode').val(tableData[1]);
 	$('#productname').val(tableData[2]);
