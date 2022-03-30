@@ -36,7 +36,7 @@
             <tbody  id="tbody">
 				<?php $count=1; ?>
 			@foreach($products as $product)
-				<tr class="dett" id="{{ $product->id }}">
+				<tr class="dett" id="{{ $product->id }}" name="{{ $product->category }}">
 					
 					<td>{{ $count}} </td>
 					<td >{{ $product->product_code}} </td>
@@ -47,7 +47,7 @@
                     <td>{{ $product->total_product}} </td>
                     <td>{{ $product->product_description}} </td>
 					<td>{{ $product->created_at }} </td>
-					<td><a  href="{{ url('/editProduct/'.$product->id) }}"  data-toggle="modal" data-target="#exampleModal" class="btn btn-primary sm">{{__('app.common.edit') }} </a>
+					<td><a  data-toggle="modal" data-target="#exampleModal" class="btn btn-primary sm">{{__('app.common.edit') }} </a>
 				</tr>
 				<?php $count++; ?>
 			@endforeach			
@@ -63,6 +63,7 @@
 
 	var tableData = [];
 $(document).on('click','#tbody .dett',function(){
+	//alert($(this).attr('name'));
 	$(this).find('td').each(function(){
 		//alert($(this).text());
 		tableData.push($(this).text().split(' ')[0]);
@@ -106,10 +107,10 @@ $(document).on('click','#tbody .dett',function(){
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-cate') }}:</label>
-							<input type="text" class="form-control" name="category" id="Pcategory">
+							<input type="text" class="form-control" name="category" id="Pcategory" placeholder="search here.." autocomplete="off">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-price') }}:</label>
+							<label for="recipient-name" class="col-form-label">{{ __('app.products.unit-price') }}:</label>
 							<input type="text" class="form-control" name="unit_price" id="unitPrice">
 						</div>
 					</div>
@@ -125,7 +126,7 @@ $(document).on('click','#tbody .dett',function(){
 					</div>
 					<div class="row">
 						<div class="form-group col-md-12">
-							<label for="message-text" class="col-form-label">{{ __('app.products.product-desc') }}:</label>
+							<label for="message-text" class="col-form-label">{{ __('app.products.poduct-desc') }}:</label>
 							<textarea class="form-control" id="message-text" name="product_description"></textarea>
 						</div>
 					</div>				

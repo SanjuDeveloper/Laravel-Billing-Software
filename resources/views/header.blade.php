@@ -55,9 +55,7 @@
 	}
   }
 }
-   </style>
-   
-
+   </style>  
 </head>
 
 <body>
@@ -466,7 +464,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location.href="{{ url('/viewProduct') }}";
+                        //window.location.href="{{ url('/viewProduct') }}";
                     } 
                 });
             } else{
@@ -489,5 +487,22 @@
       })
       return false;
   });
+
+  $("#Pcategory").keyup(function()
+  {
+    var search =$(this).val();
+      $.ajax({
+        type: 'POST',
+        url: "{{ route('searchcat.post') }}",
+        data: {"searchText":search},
+        success: function (data)
+        { 
+          var obj = JSON.parse(data);    
+          autocomplete(document.getElementById("Pcategory"),obj);// CALL  autocomplete FUNCTION //obj IS ARRAY*/
+        }
+      })
+    });
+ 
+
 	</script>
 </html>

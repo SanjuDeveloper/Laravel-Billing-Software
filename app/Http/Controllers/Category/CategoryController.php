@@ -12,7 +12,7 @@ class CategoryController extends Controller
     {
        
         $obj = new Categories;  
-        $obj->catetory_name = $post->input('catetory_name');
+        $obj->catetory_name = $post->input('catetory_name');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         $obj->catetory_description = $post->input('catetory_description');
         $obj->save();
         $response = array(
@@ -27,5 +27,16 @@ class CategoryController extends Controller
     {
       $categories = Categories::all();
       return view('category.index', compact('categories'));
+    }
+
+    public function search(Request $post)
+    {
+      $category = Categories::where('catetory_name', 'LIKE', '%'.$post->input('searchText').'%')->select('id','catetory_name')
+       ->get();
+      foreach($category as $cat){
+        $data[] = $cat->catetory_name;
+      }
+     
+    return json_encode($data); 
     }
 }
