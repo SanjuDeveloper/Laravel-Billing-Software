@@ -10,7 +10,7 @@
 	}
 </style>
 		
-		<div class="container mt-5">
+		<div class="container-fluid mt-5">
 			<div class="row mb-4">
 		    <div class="col-md-10">
 			</div>
@@ -18,7 +18,7 @@
 			  <input type="button" onclick="tableToExcel('testTable', 'Student')" value="{{ __('app.common.export-excel') }}" style="background-color:#1b6b28;color:#ffffff;">
 			</div>
 		 </div>
-           <table class="table table-hover gridtable" style="width:100%;table-layout:fixed;" id="testTable">
+           <table class="table table-hover gridtable" style="width:100%;" id="testTable">
 		    <thead class="thead-dark">
 		     <tr>
 			    <th>{{ __('app.common.count') }}</th>
@@ -77,7 +77,9 @@ $(document).on('click','#tbody .dett',function(){
 	$('#sellingPrice').val(tableData[5]);
 	$('#Quantity').val(tableData[6]);
 	$('#message-text').text(tableData[7]);
+	getALlCat(tableData[3]);
 	tableData.length = 0;
+	
 });
 </script>
 
@@ -107,7 +109,9 @@ $(document).on('click','#tbody .dett',function(){
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-cate') }}:</label>
-							<input type="text" class="form-control" name="category" id="Pcategory" placeholder="search here.." autocomplete="off">
+							<select class="form-control" name="category" id="Pcategory">
+							</select>	
+							<!-- <input type="text" class="form-control" name="category" id="Pcategory" placeholder="search here.." autocomplete="off"> -->
 						</div>
 						<div class="form-group col-md-6">
 							<label for="recipient-name" class="col-form-label">{{ __('app.products.unit-price') }}:</label>

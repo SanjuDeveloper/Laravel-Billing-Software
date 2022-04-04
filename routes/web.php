@@ -46,7 +46,7 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::post('/updateProduct', [ProductController::class, 'update'])->name('updateProduct.post');
     Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
     Route::post('/addcategory', [CategoryController::class, 'store'])->name('addpcategory.post');
-    Route::post('/searchcat', [CategoryController::class, 'search'])->name('searchcat.post');
+    Route::get('/fetchAllCat', [CategoryController::class, 'search'])->name('fetchAllCat.get');
     Route::post('/addcustomer', [CustomerController::class, 'store'])->name('addcustomer.post');
     Route::get('/viewcustomer', [CustomerController::class, 'get'])->name('addcustomer.get');    
 

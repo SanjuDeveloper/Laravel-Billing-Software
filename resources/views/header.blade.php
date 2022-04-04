@@ -488,21 +488,28 @@
       return false;
   });
 
-  $("#Pcategory").keyup(function()
-  {
-    var search =$(this).val();
-      $.ajax({
-        type: 'POST',
-        url: "{{ route('searchcat.post') }}",
-        data: {"searchText":search},
-        success: function (data)
-        { 
-          var obj = JSON.parse(data);    
-          autocomplete(document.getElementById("Pcategory"),obj);// CALL  autocomplete FUNCTION //obj IS ARRAY*/
-        }
-      })
+var categoryList = {};
+function getALlCat(currentVal)
+ {
+
+  $.get("{{ route('viewCategory.get') }}", function(data, status){
+
+   var obj = JSON.parse(data);
+      categoryList = obj;
+      var string='';
+     // string+ = '<option>'+currentVal+'</option>';
+      for (let i = 0; i < categoryList.length; i++) {
+        string  += "<option value="+categoryList[i].id+">"+categoryList[i].name+"</option>";
+      }
+      
+      $("#Pcategory").append(string);      
     });
- 
+   
+
+ }
+   
+
+  
 
 	</script>
 </html>

@@ -26,17 +26,17 @@ class CategoryController extends Controller
     public function get()
     {
       $categories = Categories::all();
-      return view('category.index', compact('categories'));
-    }
-
-    public function search(Request $post)
-    {
-      $category = Categories::where('catetory_name', 'LIKE', '%'.$post->input('searchText').'%')->select('id','catetory_name')
-       ->get();
-      foreach($category as $cat){
-        $data[] = $cat->catetory_name;
+      $response = [];
+      if(request()->ajax()){
+        foreach($categories as $data)
+        {
+          $response[] = array('id'=>$data->id,'name'=>$data->catetory_name);
+        }
+        return json_encode($response);  
+       //return response()->json(['categories' => $categories], 400);
+      }else{        
+        return view('category.index', compact('categories'));
       }
-     
-    return json_encode($data); 
+    
     }
 }
