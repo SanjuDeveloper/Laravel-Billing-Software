@@ -31,12 +31,12 @@ class CategoryController extends Controller
 
     public function search(Request $post)
     {
-      $category = Categories::where('catetory_name', 'LIKE', '%'.$post->input('searchText').'%')->select('id','catetory_name')
-       ->get();
-      foreach($category as $cat){
-        $data[] = $cat->catetory_name;
-      }
+      // if(request()->ajax())
+      // {
+      //   // @ToDo  response json
+      // }else{
+      //   return view ;
+      // }
      
-    return json_encode($data); 
     }
 }
