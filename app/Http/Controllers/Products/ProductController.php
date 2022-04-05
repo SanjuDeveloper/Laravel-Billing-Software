@@ -90,7 +90,7 @@ class ProductController extends Controller
      */
     public function update(Request $req)
     {
-       $productId = $req->input('productId');
+        $productId = $req->input('productId');
         $obj = Products::find($productId);  
         $obj->product_code= $req->input('product_code');
         $obj->product_name= $req->input('product_name');
@@ -100,9 +100,11 @@ class ProductController extends Controller
         $obj->total_product= $req->input('quantity');
         $obj->product_description= $req->input('product_description');
         $obj->update();
+        $getAllProducts = Products::all();
         $response = array(
                'insertId'=>$obj->id,
-               'status'=>'Success'
+               'status'=>'Success',
+               'products' =>$getAllProducts
        );  
 
          return json_encode($response);   

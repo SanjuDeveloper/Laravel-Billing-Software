@@ -442,6 +442,10 @@
   $('#updateproduct').submit(function() 
   {
       var form=this;
+      var  productList = {}
+      
+      var table = '';
+      $('.dett').html('');
       $.ajax({
           type: 'POST',
           url: "{{ route('updateProduct.post') }}",
@@ -451,9 +455,17 @@
           contentType: false,
           processData: false,
           success: function (data)
-          {
-            //$('#closebtn').click();           
+          {       
             var obj = JSON.parse(data);
+            productList = obj.products;
+            console.log(obj.products);
+            // productList = obj.products;
+            // let table = '';
+            // $('.dett').html('');
+            // for (let i = 0; i < productList.length; i++) {
+            //  alert(productList[i].product_code);
+            //   table  += "<tr><td>"+ i +"></td><td>" + productList[i].product_code + "</td></tr>>"; 
+            // }  
             if(obj.status === 'Success'){
               $('#closebtn').click();
               swal({
@@ -461,13 +473,19 @@
                 text: "Product Updated Successfully!",
                 icon: "success",
                 successMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        //window.location.href="{{ url('/viewProduct') }}";
-                    } 
                 });
-            } else{
+                $('.dett').html('');
+                for (let i = 0; i < productList.length; i++) {
+                  table  += "<tr><td>"+ i +"</td><td>" + productList[i].product_code + "</td>";                  
+                  table  += "<td>" + productList[i].product_name + "</td><td>"+ productList[i].category +"</td>";
+                  table  += "<td>"+ productList[i].product_price +"</td><td>" + productList[i].selling_price + "</td>";
+                  table  += "<td>"+ productList[i].total_product +"</td><td>" + productList[i].product_description + "</td>";
+                  table  += "<td>"+ productList[i].created_at +"</td><td><button class='btn btn-primary'>edit</button></td></tr>";
+                }
+                
+                $('.dett').html(table);
+
+              } else{
             swal({
                 title: "Signup Failed?",
                 text: "Somethiing went wrong. Please try again later!",
@@ -495,13 +513,13 @@ function getALlCat(currentVal)
   $.get("{{ route('viewCategory.get') }}", function(data, status){
 
    var obj = JSON.parse(data);
+   console.log(obj);
       categoryList = obj;
-      var string='';
-     // string+ = '<option>'+currentVal+'</option>';
+      $("#Pcategory").html('');
+      let string = '<option value="1">'+currentVal+'</option>';
       for (let i = 0; i < categoryList.length; i++) {
         string  += "<option value="+categoryList[i].id+">"+categoryList[i].name+"</option>";
-      }
-      
+      }  
       $("#Pcategory").append(string);      
     });
    
