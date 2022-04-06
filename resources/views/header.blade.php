@@ -443,9 +443,7 @@
   {
       var form=this;
       var  productList = {}
-      
       var table = '';
-     // $('.tbody').html('');
       $.ajax({
           type: 'POST',
           url: "{{ route('updateProduct.post') }}",
@@ -469,7 +467,7 @@
                 });
                 $('#tbody').html('');
                 for (let i = 0; i < productList.length; i++) {
-                  table  += "<tr class='dett' id="+ productList[i].product_name+" name="+productList[i].catetory_name +">";
+                  table  += "<tr class='dett' id="+ productList[i].id+" name="+productList[i].catetory_name +">";
                   table  += "<td>"+ i +"</td><td>" + productList[i].product_code + "</td>";                  
                   table  += "<td>" + productList[i].product_name + "</td><td>"+ productList[i].catetory_name +"</td>";
                   table  += "<td>"+ productList[i].product_price +"</td><td>" + productList[i].selling_price + "</td>";
