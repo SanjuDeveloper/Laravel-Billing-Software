@@ -103,7 +103,7 @@ $(document).on('click','#tbody .dett',function(){
 						<div class="form-group col-md-6">
 							<label for="recipient-name" class="col-form-label">{{ __('app.products.product-name') }}:</label>
 							<input type="text" class="form-control" name="product_name" id="productname">
-							<input type="text" name="productId" id="pId">
+							<input type="hidden" name="productId" id="pId">
 						</div>
 					</div>
 					<div class="row">
