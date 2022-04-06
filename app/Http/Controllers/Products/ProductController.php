@@ -100,7 +100,8 @@ class ProductController extends Controller
         $obj->total_product= $req->input('quantity');
         $obj->product_description= $req->input('product_description');
         $obj->update();
-        $getAllProducts = Products::all();
+        $getAllProducts = Products::join('categories', 'products.category', '=', 'categories.id')
+        ->get(['products.*', 'categories.*']);
         $response = array(
                'insertId'=>$obj->id,
                'status'=>'Success',

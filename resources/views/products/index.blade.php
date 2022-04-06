@@ -47,7 +47,9 @@
                     <td>{{ $product->total_product}} </td>
                     <td>{{ $product->product_description}} </td>
 					<td>{{ $product->created_at }} </td>
-					<td><a  data-toggle="modal" data-target="#exampleModal" class="btn btn-primary sm">{{__('app.common.edit') }} </a>
+					<td>
+						<a  data-toggle="modal" data-target="#exampleModal" class="btn btn-primary sm">{{__('app.common.edit') }} </a>
+					</td>
 				</tr>
 				<?php $count++; ?>
 			@endforeach			
@@ -63,9 +65,7 @@
 
 	var tableData = [];
 $(document).on('click','#tbody .dett',function(){
-	//alert($(this).attr('name'));
 	$(this).find('td').each(function(){
-		//alert($(this).text());
 		tableData.push($(this).text().split(' ')[0]);
 	});
 	//console.log(tableData);

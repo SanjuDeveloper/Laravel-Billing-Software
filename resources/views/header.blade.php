@@ -445,7 +445,7 @@
       var  productList = {}
       
       var table = '';
-      $('.dett').html('');
+     // $('.tbody').html('');
       $.ajax({
           type: 'POST',
           url: "{{ route('updateProduct.post') }}",
@@ -474,16 +474,18 @@
                 icon: "success",
                 successMode: true,
                 });
-                $('.dett').html('');
+                $('#tbody').html('');
                 for (let i = 0; i < productList.length; i++) {
-                  table  += "<tr><td>"+ i +"</td><td>" + productList[i].product_code + "</td>";                  
-                  table  += "<td>" + productList[i].product_name + "</td><td>"+ productList[i].category +"</td>";
+                  table  += "<tr class='dett' id="+ productList[i].product_name+" name="+productList[i].catetory_name +">";
+                  table  += "<td>"+ i +"</td><td>" + productList[i].product_code + "</td>";                  
+                  table  += "<td>" + productList[i].product_name + "</td><td>"+ productList[i].catetory_name +"</td>";
                   table  += "<td>"+ productList[i].product_price +"</td><td>" + productList[i].selling_price + "</td>";
                   table  += "<td>"+ productList[i].total_product +"</td><td>" + productList[i].product_description + "</td>";
-                  table  += "<td>"+ productList[i].created_at +"</td><td><button class='btn btn-primary'>edit</button></td></tr>";
+                  table  += "<td>"+ productList[i].created_at +"</td>";
+                  table  += "<td><a  data-toggle='modal' data-target='#exampleModal' class='btn btn-primary sm'>{{__('app.common.edit') }} </a></td></tr>";
                 }
                 
-                $('.dett').html(table);
+                $('#tbody').html(table);
 
               } else{
             swal({
