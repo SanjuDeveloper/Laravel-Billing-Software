@@ -458,14 +458,7 @@
           {       
             var obj = JSON.parse(data);
             productList = obj.products;
-            console.log(obj.products);
-            // productList = obj.products;
-            // let table = '';
-            // $('.dett').html('');
-            // for (let i = 0; i < productList.length; i++) {
-            //  alert(productList[i].product_code);
-            //   table  += "<tr><td>"+ i +"></td><td>" + productList[i].product_code + "</td></tr>>"; 
-            // }  
+            console.log(obj.products); 
             if(obj.status === 'Success'){
               $('#closebtn').click();
               swal({
