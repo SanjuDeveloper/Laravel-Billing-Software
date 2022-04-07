@@ -23,7 +23,7 @@ use App\Http\Controllers\Locale\LangController;
 Route::get('/', function () {
     if(session()->has('user'))
     {
-        return redirect('/dashboard');
+        return redirect('/main');
     }
     return view('account/login');
 });

@@ -60,7 +60,7 @@
         var obj = JSON.parse(data);
         if(obj.status === 'Success'){
           swal("Success!", "You successfully sign in!", "success");
-          const redirect = setTimeout(window.location.href="{{ url('/dashboard') }}", 2000);
+          const redirect = setTimeout(window.location.href="{{ url('/main') }}", 2000);
          // window.location.href="{{ url('/dashboard') }}";
         } else{
           swal({
@@ -104,7 +104,7 @@ $('#myForm').submit(function(e)
       if(login === 'Success')
       {
         swal("Success!", "You successfully sign in!", "success");
-        const redirect = setTimeout(window.location.href="{{ url('/dashboard') }}", 2000);
+        const redirect = setTimeout(window.location.href="{{ url('/main') }}", 2000);
       } else
       {
         swal("Failed!", "Login faild, Try again later!", "warning");
