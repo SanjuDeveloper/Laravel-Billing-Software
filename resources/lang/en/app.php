@@ -32,6 +32,7 @@ return [
         'date'              =>  'Date',
         'action'            =>  'Action',
         'edit'              => 'Edit',
+        'delete'            => 'Delete',
         'export-excel'      => 'Export to Excel',
         'close'             => 'Close',
     ],

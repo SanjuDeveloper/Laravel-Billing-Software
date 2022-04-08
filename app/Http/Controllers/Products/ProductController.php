@@ -110,4 +110,18 @@ class ProductController extends Controller
 
          return json_encode($response);   
     }
-} 
+
+      /**
+     * Delete the products.
+     *
+     * return json response
+     */
+    public function delete($id)
+    {
+        $deleted = Products::find($id)->delete();
+        if($deleted){
+            $response = array('status'=>'Success', ); 
+        } 
+        return json_encode($response); 
+    }
+}

@@ -61,8 +61,8 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                            <tr>
-                                <th>{{ __('app.common.count') }}</th>
+                            <tr class="bg-primary text-white">
+                                <th>#</th>
                                 <th>{{ __('app.products.product-code') }}</th>
                                 <th>{{ __('app.products.product-name') }}</th>
                                 <th>{{ __('app.products.product-cate') }}</th>
@@ -74,9 +74,9 @@
                                 <th>{{ __('app.common.action') }}</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        <tfoot >
                             <tr>
-                                <th>{{ __('app.common.count') }}</th>
+                                <th>#</th>
                                 <th>{{ __('app.products.product-code') }}</th>
                                 <th>{{ __('app.products.product-name') }}</th>
                                 <th>{{ __('app.products.product-cate') }}</th>
@@ -104,6 +104,8 @@
                                     <td>{{ $product->created_at }} </td>
                                     <td>
                                         <a  data-toggle="modal" data-target="#exampleModal" class="btn btn-info">{{__('app.common.edit') }} </a>
+                                        <!-- <a onClick="DeleteItem({{ $product->id }})" class="btn btn-danger">{{__('app.common.delete') }} </a> -->
+                                        <a id="deleteProduct" data-Pid="{{ $product->id }}" class="btn btn-danger">{{__('app.common.delete') }} </a>
                                     </td>
                                 </tr>
                                 <?php $count++; ?>

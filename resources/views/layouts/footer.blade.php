@@ -321,26 +321,85 @@ $('#updateproduct').submit(function()
       return false;
   });
 
-var categoryList = {};
-function getALlCat(currentVal)
- {
+    var categoryList = {};
+    function getALlCat(currentVal)
+    {
 
-  $.get("{{ route('viewCategory.get') }}", function(data, status){
+    $.get("{{ route('viewCategory.get') }}", function(data, status){
 
-   var obj = JSON.parse(data);
-   console.log(obj);
-      categoryList = obj;
-      $("#Pcategory").html('');
-      let string = '<option value="1">'+currentVal+'</option>';
-      for (let i = 0; i < categoryList.length; i++) {
-        string  += "<option value="+categoryList[i].id+">"+categoryList[i].name+"</option>";
-      }  
-      $("#Pcategory").append(string);      
+    var obj = JSON.parse(data);
+    console.log(obj);
+        categoryList = obj;
+        $("#Pcategory").html('');
+        let string = '<option value="1">'+currentVal+'</option>';
+        for (let i = 0; i < categoryList.length; i++) {
+            string  += "<option value="+categoryList[i].id+">"+categoryList[i].name+"</option>";
+        }  
+        $("#Pcategory").append(string);      
+        });
+    
+
+    }
+
+    $(document).on('click','#deleteProduct',function()
+    {
+        var id =   $(this).attr("data-Pid");
+        var self = $(this);
+        swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+            $.ajax({
+            type: 'GET',
+            url: "deleteProduct/"+id,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data)
+            {       
+                var obj = JSON.parse(data);
+                if(obj.status === 'Success'){
+                    swal({
+                    title: "Success!",
+                    text: "Product Deleted Successfully!",
+                    icon: "success",
+                    successMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            self.closest('tr').remove();//window.location.href="{{ url('/viewProduct') }}";
+                        } 
+                    });
+
+                } else{
+                    swal({
+                        title: "Signup Failed?",
+                        text: "Somethiing went wrong. Please try again later!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                        window.location.href="{{ url('/viewProduct') }}";
+                        } else {
+                        window.location.href="{{ url('/viewProduct') }}";
+                        }
+                    });
+                }
+            }
+         })
+         return false;
+        } else {
+            swal("Your record is safe!");
+        }
+        });
     });
    
-
- }
-   
-
-
 </script>	
