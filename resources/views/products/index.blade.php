@@ -103,7 +103,7 @@
                                     <td>{{ $product->product_description}} </td>
                                     <td>{{ $product->created_at }} </td>
                                     <td>
-                                        <a  data-toggle="modal" data-target="#exampleModal" class="btn btn-primary sm">{{__('app.common.edit') }} </a>
+                                        <a  data-toggle="modal" data-target="#exampleModal" class="btn btn-info">{{__('app.common.edit') }} </a>
                                     </td>
                                 </tr>
                                 <?php $count++; ?>
