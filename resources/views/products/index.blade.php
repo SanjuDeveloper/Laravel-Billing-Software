@@ -48,14 +48,14 @@
 <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="container-fluid">
 
-        <!-- Page Heading -->
+        <!-- Page Heading -
         <div class="d-flex justify-content-between">
                 <h1 class="h3 mb-2 text-gray-800"></h1>
-                <a role="button" onclick="fnExcelReport();" class="d-none my-3 d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Export List</a>
-        </div><!-- DataTales Example -->
+                < <a role="button" onclick="fnExcelReport();" class="d-none my-3 d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Export List</a> 
+        </div> DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+            <a role="button" onclick="fnExcelReport();" class="btn btn-sm btn-primary"><i class="fas fa-download fa-sm text-white-50"></i> Export List</a><span  style="text-align: right; font-weight:bold"> Products</span>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
