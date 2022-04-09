@@ -295,8 +295,8 @@ $('#updateproduct').submit(function()
                   table  += "<td>"+ productList[i].product_price +"</td><td>" + productList[i].selling_price + "</td>";
                   table  += "<td>"+ productList[i].total_product +"</td><td>" + productList[i].product_description + "</td>";
                   table  += "<td>"+ productList[i].created_at +"</td>";
-                  table  += "<td><a  data-toggle='modal' data-target='#exampleModal' class='btn btn-primary sm'>{{__('app.common.edit') }} </a></td>";
-                  table  += "<td><a id='deleteProduct' data-Pid="+ productList[i].id +" class='btn btn-danger'>{{__('app.common.delete') }} </a></td></tr>";
+                  table  += "<td><a  data-toggle='modal' data-target='#exampleModal' class='btn btn-primary sm'>{{__('app.common.edit') }} </a>";
+                  table  += "<a id='deleteProduct' data-Pid="+ productList[i].id +" class='btn btn-danger'>{{__('app.common.delete') }} </a></td></tr>";
                 }
                 
                 $('#tbody').html(table);
