@@ -295,7 +295,8 @@ $('#updateproduct').submit(function()
                   table  += "<td>"+ productList[i].product_price +"</td><td>" + productList[i].selling_price + "</td>";
                   table  += "<td>"+ productList[i].total_product +"</td><td>" + productList[i].product_description + "</td>";
                   table  += "<td>"+ productList[i].created_at +"</td>";
-                  table  += "<td><a  data-toggle='modal' data-target='#exampleModal' class='btn btn-primary sm'>{{__('app.common.edit') }} </a></td></tr>";
+                  table  += "<td><a  data-toggle='modal' data-target='#exampleModal' class='btn btn-primary sm'>{{__('app.common.edit') }} </a></td>";
+                  table  += "<td><a id='deleteProduct' data-Pid="+ productList[i].id +" class='btn btn-danger'>{{__('app.common.delete') }} </a></td></tr>";
                 }
                 
                 $('#tbody').html(table);
@@ -364,35 +365,8 @@ $('#updateproduct').submit(function()
             success: function (data)
             {       
                 var obj = JSON.parse(data);
-                if(obj.status === 'Success'){
-                    swal({
-                    title: "Success!",
-                    text: "Product Deleted Successfully!",
-                    icon: "success",
-                    successMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            self.closest('tr').remove();//window.location.href="{{ url('/viewProduct') }}";
-                        } 
-                    });
-
-                } else{
-                    swal({
-                        title: "Signup Failed?",
-                        text: "Somethiing went wrong. Please try again later!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                        window.location.href="{{ url('/viewProduct') }}";
-                        } else {
-                        window.location.href="{{ url('/viewProduct') }}";
-                        }
-                    });
-                }
+                sweetAlert(obj.status,'Product Deleted Successfully','Somethiing went wrong. Please try again later!','#deleteProduct');
+               
             }
          })
          return false;
@@ -401,5 +375,40 @@ $('#updateproduct').submit(function()
         }
         });
     });
+
+
+    function sweetAlert(status,message,failedMessage,id=null)
+    {
+        if(status === 'Success'){
+            swal({
+            title: "Success!",
+            text: message,
+            icon: "success",
+            successMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    //self.closest('tr').remove();
+                    $(id).closest('tr').remove();
+                } 
+            });
+
+        } else{
+            swal({
+                title: "Signup Failed?",
+                text: failedMessage,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    location.reload();
+                } else {
+                    location.reload();
+                }
+            });
+        }
+    }
    
 </script>	
