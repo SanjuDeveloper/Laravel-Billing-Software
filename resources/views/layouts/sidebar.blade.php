@@ -12,7 +12,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url('/main') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>{{ __('app.dashboard.title') }}</span></a>
             </li>
 
             <!-- Divider -->

@@ -43,13 +43,14 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::get('/addProduct', [ProductController::class, 'get'])->name('addproduct.get');
     Route::post('/addproduct', [ProductController::class, 'store'])->name('addproduct.post');
     Route::get('/editProduct/{id}', [ProductController::class, 'edit']);
-    Route::get('/deleteProduct/{id}', [ProductController::class, 'delete']); //->name('deleteProduct.delete');
+    Route::get('/deleteProduct/{id}', [ProductController::class, 'delete']);
     Route::post('/updateProduct', [ProductController::class, 'update'])->name('updateProduct.post');
     Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
     Route::post('/addcategory', [CategoryController::class, 'store'])->name('addpcategory.post');
     Route::get('/fetchAllCat', [CategoryController::class, 'search'])->name('fetchAllCat.get');
     Route::post('/addcustomer', [CustomerController::class, 'store'])->name('addcustomer.post');
-    Route::get('/viewcustomer', [CustomerController::class, 'get'])->name('addcustomer.get');    
+    Route::get('/viewcustomer', [CustomerController::class, 'get'])->name('addcustomer.get'); 
+    Route::get('/getcustomer/{val}', [CustomerController::class, 'getByname']);   
 
 });
 

@@ -38,6 +38,16 @@ return [
         'close'             => 'बंद करना',
     ],
 
+    'dashboard'=> [
+        'title' => 'डैशबोर्ड',
+    ],
+
+    'bill' => [
+        'generatebill'  => 'बिल जनरेट करें',
+        'bill-number'   => 'बिल संख्या',
+        'qty'           => 'मात्रा',
+    ],
+
     'products' => [
         'title'             =>  "उत्पाद संपादित करें",
         'unit-price'        =>  'यूनिट मूल्य',

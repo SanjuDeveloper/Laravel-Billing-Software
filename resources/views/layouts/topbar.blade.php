@@ -1,7 +1,3 @@
-
- 
-   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -55,6 +51,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span style="color:#222042;"> Locale<i class="fas fa-flag fa-fw"></i></span>
+                                 <br>{{ session()->get('locale') }}
                                 <!-- Counter - Alerts -->
                                 <!-- <span class="badge badge-primary badge-counter">{{ session()->get('locale') }}</span> -->
                             </a>

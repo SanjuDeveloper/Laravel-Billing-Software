@@ -37,6 +37,16 @@ return [
         'close'             => 'Close',
     ],
 
+    'dashboard'=> [
+        'title' => 'Dashboard',
+    ],
+
+    'bill' => [
+        'generate-bill'  => 'GENERATE BILL',
+        'bill-number'   => 'Bill No',
+        'qty'           => 'Qty',
+    ],
+
     'products' => [
         'title'             =>  "Edit Product",
         'unit-price'        =>  'Unit Price',

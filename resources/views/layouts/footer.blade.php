@@ -410,5 +410,31 @@ $('#updateproduct').submit(function()
             });
         }
     }
+
+    $(document).on('blur','#cust_name',function()
+    {
+        
+        var name = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: "getcustomer/"+name,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data)
+            {       
+               var customer = data;
+                for(let i=0; i < customer.length;i++)
+                {
+                   $(this).val(customer[i].id);
+                   $('#Cmobile').val(customer[i].phone_no);
+                   $('#Caddress').val(customer[i].address)
+                }
+               
+            }
+        })
+        return false;
+    });
    
 </script>	

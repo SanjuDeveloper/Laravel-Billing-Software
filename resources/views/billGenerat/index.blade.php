@@ -4,17 +4,17 @@
         @include('layouts/sidebar')
       
         <!-- End of Sidebar -->
-          <!-- Content Wrapper -->
-          <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
-            <div id="content">
+        <!-- Main Content -->
+        <div id="content">
 
-                <!-- Topbar -->
-                @include('layouts/topbar')
-                <!-- End of Topbar -->
+        <!-- Topbar -->
+        @include('layouts/topbar')
+        <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
+        <!-- Begin Page Content -->
 
 
 <style>
@@ -56,7 +56,7 @@
 
 </style>
         <div class="card-header py-3">
-           <h3 class="text-uppercase" style="text-shadow: 1px 1px 2px blue,0 0 0.2em darkblue;color: black;font-size: 30px;margin-left:40%;">Generate Bill</h3>
+           <h3 class="" style="text-shadow: 1px 1px 2px blue,0 0 0.2em darkblue;color: black;font-size: 30px;margin-left:40%;"> {{ __('app.bill.generate-bill') }}</h3>
         </div>
 		<div class="container-fluid" style="padding:0 3%;overflow-y:auto;">
         <div class="bill p-3" style="background-color:lightgrey;overflow:auto">
@@ -64,7 +64,7 @@
                 <table style="font-size:14px;width:100%;">
                     <tbody>
                         <tr>
-                            <td width="20%"><b>Bill No</b></td>
+                            <td width="20%"><b>{{ __('app.bill.bill-number') }}</b></td>
                             <td width="30%"><input name="bill_no" value="<?php echo(rand(10,100)); ?>" id="bill_no" readonly></td> 
                             <td width="20%" class="text-center"><b>Bill Date</b></td>
                             <td width="30%"><input type="date" name="bill_date" id="bill_date" value="<?php echo date("Y-m-d"); ?>"></td> 
@@ -112,7 +112,7 @@
                             </td> -->
                             <td class="text-center">
                                 <div class="form-group">
-                                <label class="text-white"><b>Qty</b></label>
+                                <label class="text-white"><b>{{__('app.bill.qty')}}</b></label>
                                 <input type="text" class="form-control" name ="Qty" id="Qty" \>
                                 </div>
                             </td>
@@ -190,5 +190,4 @@
         </div>
 			<!-- </div>-->
 	</div>
-
 @include('layouts/footer')

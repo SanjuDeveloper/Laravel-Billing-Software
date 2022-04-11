@@ -30,4 +30,10 @@ class CustomerController extends Controller
         $customers = customers::all();
         return view('customer.index', compact('customers'));
    }
+
+   public function getByname($value)
+   {
+      $customer = customers::where('customer_name', $value)->get();
+      return response()->json($customer);
+   }
 }
