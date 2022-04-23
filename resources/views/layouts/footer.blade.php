@@ -600,8 +600,16 @@ $(document).on('blur','#product_name',function()
 });
 
 $('#Qty').keyup(function(){
-        $('#TotalRS').val($(this).val()* $('#Price').val());
-    });
+    $('#TotalRS').val($(this).val()* $('#Price').val());
+});
+
+$('#PDIS').keyup(function(){
+   let discount = $(this).val();
+   let quantity = $('#Qty').val();
+   let price =  $('#Price').val();
+   let totalAmount = quantity* price;
+    $('#TotalRS').val(totalAmount - discount);
+});
 
 $('#product_name').click(function(){
     var customer = $('#cust_name').val();
