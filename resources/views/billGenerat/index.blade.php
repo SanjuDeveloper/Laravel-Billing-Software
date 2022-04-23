@@ -110,7 +110,9 @@
                         </tr>
                         <tr>
                             <td><b>Customer Name</b></td>
-                            <td><input name="cust_name" id="cust_name"></td>
+                            <td><input name="cust_name" id="cust_name">
+                            <input type="hidden" id="customerCode">
+                            </td>
                             <td class="text-center"><b>Customer Address</b></td>
                             <td rowspan="2"><textarea rows="4" class="form-control" name="coustomerAddress" id="Caddress" placeholder="Enter coustomer Address"style="border:1px solid black;margin-top:5px;"></textarea></td> 
                         </tr>
@@ -129,8 +131,8 @@
                     </tbody>
                 </table>	
                 <div class="row mt-3" id="rep" style="overflow:auto">
-                        <table class="table text-center">
-                        <tr>
+                    <table class="table text-center">
+                        <tr class="tempOrder">
                             <td>
                                 <div class="form-group autocomplete">
                                 <label class="text-white"><b>Product Name</b></label>
@@ -174,11 +176,10 @@
                                 </div>
                             </td>
                             <td width="15%" style="vertical-align:middle">
-                                <a class="btn btn-success" id="ADDORDER" ><i class="fa fa-plus" style="font-size: 14px;padding: 0px;width: 9px;"></i></a>
-                                <a class="btn btn-danger" id="REMOVEORDER"><i class="fa fa-minus" style="font-size: 14px;padding: 0px;width: 9px;"></i></a>
+                                <a class="btn btn-success" onClick="AddTempOrder()" ><i class="fa fa-plus" style="font-size: 14px;padding: 0px;width: 9px;"></i></a>
+                                <a class="btn btn-danger"><i class="fa fa-minus" style="font-size: 14px;padding: 0px;width: 9px;"></i></a>
                             </td>
                         </tr>
-                        <input type="hidden" name="ccode" id="C_CODE" >
                     </table>
                     
                     <table class="table text-center list" id="testTable">

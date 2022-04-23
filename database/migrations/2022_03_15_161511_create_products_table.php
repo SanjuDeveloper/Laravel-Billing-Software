@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('product_price');
             $table->string('selling_price');
             $table->string('total_product');
-            $table->longText('product_description');
+            $table->string('product_description');
             $table->timestamps();
         });
     }

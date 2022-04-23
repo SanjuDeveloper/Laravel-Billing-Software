@@ -41,7 +41,8 @@
 				   <div class="col">
 				 	 <div class="form-group">
 						<label>{{ __('app.products.product-cate') }}</label> 
-						<span class="eye" id="toggle_pwd"> <i  style="color:green;" class="fa fa-plus"  aria-hidden="true"></i><i  style="color:red;display:none" class="fa fa-minus"  aria-hidden="true"></i> </span>
+						<span class="eye" id="toggle_pwd"> <i  style="color:green;" class="fa fa-plus" id="plus" aria-hidden="true"></i>
+						<i  style="color:red;display:none" class="fa fa-minus" id="minus" aria-hidden="true"></i> </span>
 						<select class="form-control"  id="cat" name="category">
 						<option selected disabled>--{{ __('app.common.select') }}--</option>
 						@foreach($categories as $cat)

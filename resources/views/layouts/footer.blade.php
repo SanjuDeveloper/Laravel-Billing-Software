@@ -207,14 +207,14 @@ $(function(){
         window.location.href = url + "?lang="+ $(this).val();
     });
 
-    $('.fa-plus').on('click',function(){
+    $('#plus').on('click',function(){
         $('#ncate').css('display','block');
         $('.fa-minus').css('display','block');
         $('.fa-plus').css('display','none');
         $('#cat').prop('disabled',true);		
     });
 
-    $('.fa-minus').on('click',function(){
+    $('#minus').on('click',function(){
         $('#ncate').css('display','none');
         $('.fa-minus').css('display','none');
         $('.fa-plus').css('display','block');
@@ -373,7 +373,7 @@ $('#updateproduct').submit(function()
             success: function (data)
             {       
                 var obj = JSON.parse(data);
-                sweetAlert(obj.status,'Product Deleted Successfully','Somethiing went wrong. Please try again later!','#deleteProduct');
+                sweetAlert(obj.status,'Product Deleted Successfully','Somethiing went wrong. Please try again later!','#deleteProduct','Product can not deleted');
                
             }
          })
@@ -385,7 +385,7 @@ $('#updateproduct').submit(function()
     });
 
 
-    function sweetAlert(status,message,failedMessage,id=null)
+    function sweetAlert(status,message,failedMessage,id=null,failed)
     {
         if(status === 'Success'){
             swal({
@@ -403,7 +403,7 @@ $('#updateproduct').submit(function()
 
         } else{
             swal({
-                title: "Signup Failed?",
+                title: failed,
                 text: failedMessage,
                 icon: "warning",
                 buttons: true,
@@ -435,9 +435,10 @@ $('#updateproduct').submit(function()
                var customer = data;
                 for(let i=0; i < customer.length;i++)
                 {
-                   $(this).val(customer[i].id);
+                   $(this).val(customer[i].customer_name);
                    $('#Cmobile').val(customer[i].phone_no);
-                   $('#Caddress').val(customer[i].address)
+                   $('#Caddress').val(customer[i].address);
+                   $('#customerCode').val(customer[i].customer_code);
                 }
                
             }
@@ -585,7 +586,7 @@ $(document).on('blur','#product_name',function()
         contentType: false,
         processData: false,
         success: function (data)
-        {   console.log(data);
+        {  
             for(let i=0; i < data.length;i++)
             {
                 $('#product_code').val(data[i].product_code);
@@ -614,33 +615,38 @@ $('#PDIS').keyup(function(){
 $('#product_name').click(function(){
     var customer = $('#cust_name').val();
     if (customer == ""){
-        swal({
-            title: "Customer details is empty?",
-            text: "Customer details can not be empty!",
-            icon: "warning",           
-            dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                $('#cust_name').focus();
-
-            } 
-        });       
+        swal("Customer details can not be empty!");  
+        $('#cust_name').focus();
     }
 
     let Caddress  = $('#Caddress').val();
     let Cmobile = $('#Cmobile').val()
     let customer_code = Math.floor((Math.random() * 1000) + 1);
     $.ajax({
-    type: 'POST',
-    url: "{{ route('addcustomer.post') }}",
-    data: {customer_name:customer,phone_no:Cmobile,address:Caddress,customer_code:customer_code},
-    success: function (data)
-    {       
-       // alert(data);
-    }
+        type: 'POST',
+        url: "{{ route('addcustomer.post') }}",
+        data: {customer_name:customer,phone_no:Cmobile,address:Caddress,customer_code:customer_code},
+        success: function (data) { }
     }); 
 });
-   
+
+function AddTempOrder()
+{
+   let productCode  =  $('#product_code').val();
+   let productDisco =  $('#PDIS').val();
+   let productQuty  =  $('#Qty').val();
+   let productPrice =  $('#Price').val();
+   let productGrand =  $('#TotalRS').val();
+   let billNumber   =  $('#bill_no').val();
+   let customerCode =  $('#customerCode').val(); 
+   $.ajax({
+        type: 'POST',
+        url: "{{ route('tempOrder.create') }}",
+        data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode},
+        success: function (data) {
+            swal(data);  
+        }
+    });
+}
 
 </script>	

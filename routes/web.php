@@ -6,6 +6,7 @@ use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\Locale\LangController;
+use App\Http\Controllers\orders\Orders;  
 //use App\Http\Controllers;
 
 
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::post('/addcustomer', [CustomerController::class, 'store'])->name('addcustomer.post');
     Route::get('/viewcustomer', [CustomerController::class, 'get'])->name('addcustomer.get'); 
     Route::get('/getcustomer/{val}', [CustomerController::class, 'getByname']);
+    Route::post('/tempOrder', [Orders::class, 'AddTempOrder'])->name('tempOrder.create');
 });
 
 Route::get('/logout', function () {
