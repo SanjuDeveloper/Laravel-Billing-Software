@@ -644,7 +644,12 @@ function AddTempOrder()
         url: "{{ route('tempOrder.create') }}",
         data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode},
         success: function (data) {
-            swal(data);  
+            $('#product_code').val('');
+            $('#product_code').val('');
+            $('#PDIS').val('');
+            $('#Qty').val('');
+            $('#Price').val('');
+            $('#TotalRS').val('');  
         }
     });
 }
