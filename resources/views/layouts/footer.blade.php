@@ -147,6 +147,11 @@
     <!-- Page level custom scripts -->
     <script src="{{ url('/dashboard-js/js/demo/datatables-demo.js') }}"></script>
     <script>
+        function disabled()
+        {
+            $('#Price').prop('readonly', true);
+            $('#TotalRS').prop('readonly', true); 
+        }
         
     function fnExcelReport(){
         var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
@@ -187,6 +192,8 @@
 });
 
 $(function(){
+
+    disabled();
 
     $.ajaxSetup({
 		headers: {
@@ -557,15 +564,52 @@ $('#product_name').keyup(function(){
                var product = obj;
                 for(let i=0; i < product.length;i++)
                 {
-                   // console.log(product[i].product_name);
-                   allProducts.push(product[i].product_name.split(" ")[0]);
+                    allProducts.push(product[i].product_name.split(" ")[0]);
                 }
-                console.log(allProducts);
-                console.log(countries);
+
                 autocomplete(document.getElementById("product_name"), allProducts);
             }
         })
         return false;
 });   
+
+$(document).bind('blur','#product_name',function()
+{  
+    var name = $(this).val();        
+    $.ajax({
+        type: 'GET',
+        url: "ProductByName/"+name,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data)
+        {   
+            for(let i=0; i < data.length;i++)
+            {
+                $('#product_code').val(data[i].product_code);
+                $('#Qty').val('1');
+                $('#Price').val(data[i].product_price);
+                $('#TotalRS').val($('#Qty').val()* $('#Price').val());
+            }
+            
+        }
+    })
+    return false;
+});
+
+$('#Qty').keyup(function(){
+        $('#TotalRS').val($(this).val()* $('#Price').val());
+    });
+
+$('#product_name').click(function(){
+   
+    if ($('#cust_name').is(':empty')){
+       alert('Customer Details can not be empty');
+       $('#cust_name').focus();
+    }
+  
+});
+   
 
 </script>	

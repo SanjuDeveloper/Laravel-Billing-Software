@@ -135,4 +135,15 @@ class ProductController extends Controller
         $products = Products::where('product_name', 'LIKE', '%'.$name.'%')->get('product_name');
         return json_encode($products);   
     }
+
+     /**
+     * get the products by name.
+     *
+     *return json
+     */
+    public function SearchByName($name)
+    {
+        $products = Products::where('product_name', $name)->get();
+        return response()->json($products);
+    }
 }

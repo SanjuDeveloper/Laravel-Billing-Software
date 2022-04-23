@@ -159,7 +159,6 @@
                                 <div class="form-group">
                                 <label class="text-white"><b>Unit Price</b></label>
                                 <input type="text" class="form-control" name ="Price" id ="Price"\>
-                                <input type="hidden" name="CATID" id="CAT_ID">
                                 </div>
                             </td>
                             <td>
