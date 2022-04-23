@@ -10,19 +10,25 @@ class CustomerController extends Controller
 {
    public function store(Request $req)
    {
-        $obj = new customers;
-        $obj->customer_code = $req->input('customer_code');
-        $obj->customer_name = $req->input('customer_name');
-        $obj->phone_no = $req->input('phone_no');
-        $obj->email = $req->input('email');
-        $obj->address = $req->input('address');
-        $obj->save();
-        $response = array(
+      $customer = customers::where('phone_no', $req->input('phone_no'))->first();
+      if(!$customer){
+         $obj = new customers;
+         $obj->customer_code = $req->input('customer_code');
+         $obj->customer_name = $req->input('customer_name');
+         $obj->phone_no = $req->input('phone_no');
+         $obj->email = $req->input('email');
+         $obj->address = $req->input('address');
+         $obj->save();
+         $response = array(
             'insertId'=>$obj->id,
             'status'=>'Success'
-    );  
-
-      return json_encode($response);  
+         ); 
+      }else{
+         $response = array(
+            'status'=>'Phone number is Already Exist'
+         ); 
+      }
+     return json_encode($response);  
    }
 
    public function get()

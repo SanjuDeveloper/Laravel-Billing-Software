@@ -419,17 +419,17 @@
                 });
             } else{
             swal({
-                title: "Signup Failed?",
-                text: "Somethiing went wrong. Please try again later!",
+                title: "Failed?",
+                text: obj.status,
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                window.location.href="{{ url('/addcustomer') }}";
+               // window.location.href="{{ url('/addcustomer') }}";
                 } else {
-                window.location.href="{{ url('/addcustomer') }}";
+                //window.location.href="{{ url('/addcustomer') }}";
                 }
             });
             }

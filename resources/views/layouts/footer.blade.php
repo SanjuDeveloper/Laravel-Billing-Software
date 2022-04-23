@@ -615,9 +615,23 @@ $('#product_name').click(function(){
             .then((willDelete) => {
             if (willDelete) {
                 $('#cust_name').focus();
+
             } 
         });       
-    }  
+    }
+
+    let Caddress  = $('#Caddress').val();
+    let Cmobile = $('#Cmobile').val()
+    let customer_code = Math.floor((Math.random() * 1000) + 1);
+    $.ajax({
+    type: 'POST',
+    url: "{{ route('addcustomer.post') }}",
+    data: {customer_name:customer,phone_no:Cmobile,address:Caddress,customer_code:customer_code},
+    success: function (data)
+    {       
+       // alert(data);
+    }
+    }); 
 });
    
 
