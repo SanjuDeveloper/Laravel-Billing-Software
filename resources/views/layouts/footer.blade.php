@@ -146,6 +146,7 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ url('/dashboard-js/js/demo/datatables-demo.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function disabled()
         {
@@ -573,7 +574,7 @@ $('#product_name').keyup(function(){
         return false;
 });   
 
-$(document).bind('blur','#product_name',function()
+$(document).on('blur','#product_name',function()
 {  
     var name = $(this).val();        
     $.ajax({
@@ -584,7 +585,7 @@ $(document).bind('blur','#product_name',function()
         contentType: false,
         processData: false,
         success: function (data)
-        {   
+        {   console.log(data);
             for(let i=0; i < data.length;i++)
             {
                 $('#product_code').val(data[i].product_code);
@@ -603,12 +604,20 @@ $('#Qty').keyup(function(){
     });
 
 $('#product_name').click(function(){
-   
-    if ($('#cust_name').is(':empty')){
-       alert('Customer Details can not be empty');
-       $('#cust_name').focus();
-    }
-  
+    var customer = $('#cust_name').val();
+    if (customer == ""){
+        swal({
+            title: "Customer details is empty?",
+            text: "Customer details can not be empty!",
+            icon: "warning",           
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                $('#cust_name').focus();
+            } 
+        });       
+    }  
 });
    
 
