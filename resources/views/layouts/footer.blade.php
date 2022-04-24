@@ -657,7 +657,7 @@ function AddTempOrder()
         data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,billDate:billDate},
         success: function (data) {
             $('#temprders').append(table);
-            $('#product_code').val('');
+            $('#product_name').val('');
             $('#product_code').val('');
             $('#PDIS').val('');
             $('#Qty').val('');
