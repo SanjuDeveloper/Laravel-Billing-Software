@@ -616,6 +616,7 @@ $('#product_name').click(function(){
     var customer = $('#cust_name').val();
     if (customer == ""){
         swal("Customer details can not be empty!");  
+        $('#cust_name').css('border','1px solid red'); 
         $('#cust_name').focus();
     }
 
@@ -632,6 +633,7 @@ $('#product_name').click(function(){
 
 function AddTempOrder()
 {
+    var table = '';
    let productCode  =  $('#product_code').val();
    let productDisco =  $('#PDIS').val();
    let productQuty  =  $('#Qty').val();
@@ -639,11 +641,19 @@ function AddTempOrder()
    let productGrand =  $('#TotalRS').val();
    let billNumber   =  $('#bill_no').val();
    let customerCode =  $('#customerCode').val(); 
+   table += "<tr>";
+            table += "<td>1</td><td>" +productCode+ "</td>";                  
+            table += "<td>" +  $('#product_name').val() + "</td>";
+            table += "<td>"+productQuty+"</td>";
+            table += "<td>" +productPrice+ "</td>";
+            table += "<td>"+productGrand+"</td></tr>";
+
    $.ajax({
         type: 'POST',
         url: "{{ route('tempOrder.create') }}",
         data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode},
         success: function (data) {
+            $('#temprders').append(table);
             $('#product_code').val('');
             $('#product_code').val('');
             $('#PDIS').val('');

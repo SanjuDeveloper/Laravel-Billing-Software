@@ -16,7 +16,7 @@ class CreateTempOrdersTable extends Migration
         Schema::create('temp_orders', function (Blueprint $table) {
             $table->id();
             $table->string('productCode')->unique();
-            $table->string('billNumber')->unique();
+            $table->string('billNumber');
             $table->string('customerCode');
             $table->string('productDisco');
             $table->string('productQuty');
