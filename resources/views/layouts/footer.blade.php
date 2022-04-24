@@ -641,8 +641,10 @@ function AddTempOrder()
    let productGrand =  $('#TotalRS').val();
    let billNumber   =  $('#bill_no').val();
    let customerCode =  $('#customerCode').val(); 
+   let count = $("#temprders").children("tr").length;
+    let number  = parseInt(count)+1;
    table += "<tr>";
-            table += "<td>1</td><td>" +productCode+ "</td>";                  
+            table += "<td>"+number+"</td><td>" +productCode+ "</td>";                  
             table += "<td>" +  $('#product_name').val() + "</td>";
             table += "<td>"+productQuty+"</td>";
             table += "<td>" +productPrice+ "</td>";
