@@ -23,6 +23,7 @@ class Orders extends Controller
         $obj->productQuty= $req->input('productQuty');
         $obj->productPrice= $req->input('productPrice');
         $obj->productGrand= $req->input('productGrand');
+        $obj->billDate= $req->input('billDate');
         $obj->save();
         $response = array(
                'insertId'=>$obj->id,

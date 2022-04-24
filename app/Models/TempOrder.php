@@ -21,6 +21,7 @@ class TempOrder extends Model
         'productDisco',
         'productQuty',
         'productPrice',
+        'billDate',
         'productGrand',       
     ];
 }

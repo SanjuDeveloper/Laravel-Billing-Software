@@ -21,6 +21,7 @@ class CreateTempOrdersTable extends Migration
             $table->string('productDisco');
             $table->string('productQuty');
             $table->string('productPrice');
+            $table->string('billDate');
             $table->string('productGrand');
             $table->timestamps();
         });

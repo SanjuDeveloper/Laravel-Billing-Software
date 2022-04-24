@@ -641,6 +641,7 @@ function AddTempOrder()
    let productGrand =  $('#TotalRS').val();
    let billNumber   =  $('#bill_no').val();
    let customerCode =  $('#customerCode').val(); 
+   let billDate     = $('#billDate').val();
    let count = $("#temprders").children("tr").length;
     let number  = parseInt(count)+1;
    table += "<tr>";
@@ -653,7 +654,7 @@ function AddTempOrder()
    $.ajax({
         type: 'POST',
         url: "{{ route('tempOrder.create') }}",
-        data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode},
+        data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,billDate:billDate},
         success: function (data) {
             $('#temprders').append(table);
             $('#product_code').val('');

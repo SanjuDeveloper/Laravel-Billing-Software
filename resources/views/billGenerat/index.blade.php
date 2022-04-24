@@ -106,7 +106,7 @@
                             <td width="20%"><b>{{ __('app.bill.bill-number') }}</b></td>
                             <td width="30%"><input name="bill_no" value="<?php echo(rand(10,100)); ?>" id="bill_no" readonly></td> 
                             <td width="20%" class="text-center"><b>Bill Date</b></td>
-                            <td width="30%"><input type="date" name="bill_date" id="bill_date" value="<?php echo date("Y-m-d"); ?>"></td> 
+                            <td width="30%"><input type="date" name="bill_date" id="billDate" value="<?php echo date("Y-m-d"); ?>"></td> 
                         </tr>
                         <tr>
                             <td><b>Customer Name</b></td>
