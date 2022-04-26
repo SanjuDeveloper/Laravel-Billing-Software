@@ -675,4 +675,10 @@ function AddTempOrder()
     });
 }
 
+function DeleteTempOrder()
+{
+    $.get("{{ route('tempOrder.delete') }}", function(data, status){
+        // TO DO alert message/warning
+    });
+}
 </script>	

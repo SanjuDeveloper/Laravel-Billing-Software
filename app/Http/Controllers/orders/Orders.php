@@ -66,4 +66,9 @@ class Orders extends Controller
       
     return json_encode($response);
   }
+
+  public function DeleteTempOrder()
+  {
+    TempOrder::truncate();
+  }
 }

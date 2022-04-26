@@ -229,5 +229,9 @@
         </div>
 			<!-- </div>-->
 	</div>
-
+    <script type="text/javascript">
+    window.onload = function (e) {
+         DeleteTempOrder();
+    };
+</script>
 @include('layouts/footer')
