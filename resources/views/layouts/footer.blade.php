@@ -645,6 +645,7 @@ function AddTempOrder()
    let count = $("#temprders").children("tr").length;
     let number  = parseInt(count)+1;
    table += "<tr>";
+            table += "<td><input type='checkbox' style='width: 27px !important;height: 19px' id='vehicle1'></td>";  
             table += "<td>"+number+"</td><td>" +productCode+ "</td>";                  
             table += "<td>" +  $('#product_name').val() + "</td>";
             table += "<td id='qty'>"+productQuty+"</td>";

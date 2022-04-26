@@ -185,6 +185,8 @@
                     <table class="table text-center list" id="testTable">
                         <thead class="bg-success text-white">
                             <tr>
+                            <th><input type="checkbox" style='width: 27px !important;height: 19px;' id="deleteAllTempOrder"></th>
+                            <th>Action.</th>
                             <th>S No.</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
