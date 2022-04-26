@@ -177,7 +177,7 @@
                             </td>
                             <td width="15%" style="vertical-align:middle">
                                 <a class="btn btn-success" onClick="AddTempOrder()" ><i class="fa fa-plus" style="font-size: 14px;padding: 0px;width: 9px;"></i></a>
-                                <a class="btn btn-danger"><i class="fa fa-minus" style="font-size: 14px;padding: 0px;width: 9px;"></i></a>
+                                <a class="btn btn-danger" onClick="DeleteTempOrders()" ><i class="fa fa-minus" style="font-size: 14px;padding: 0px;width: 9px;"></i></a>
                             </td>
                         </tr>
                     </table>

@@ -665,7 +665,6 @@ function AddTempOrder()
             }else{
                 $('#temprders').append(table);
             }
-            //$('#temprders').append(table);
             $('#product_name').val('');
             $('#product_code').val('');
             $('#PDIS').val('');
@@ -682,7 +681,35 @@ function DeleteTempOrder()
         // TO DO alert message/warning
     });
 }
+function DeleteTempOrders()
+{
+    if($('#deleteAllTempOrder').is(':checked')){
+        swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this details!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {                          
+                DeleteTempOrder();
+                $('#temprders').html('');
+                $('#deleteAllTempOrder').prop('checked',false);
+                swal({
+                title: "Success!",
+                text: "Order deleted successfully!",
+                icon: "success",
+                successMode: true,
+                });
+         return false;
+        } else {
+            swal("Your record is safe!");
+        }
+        });
+    }
 
+}
 $("#deleteAllTempOrder").click(function(){
     $('input:checkbox').not(this).prop('checked', this.checked);
 });
