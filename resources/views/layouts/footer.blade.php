@@ -622,7 +622,7 @@ $('#product_name').click(function(){
 
     let Caddress  = $('#Caddress').val();
     let Cmobile = $('#Cmobile').val()
-    let customer_code = Math.floor((Math.random() * 1000) + 1);
+    let customer_code =$('#customerCode').val();
     $.ajax({
         type: 'POST',
         url: "{{ route('addcustomer.post') }}",
