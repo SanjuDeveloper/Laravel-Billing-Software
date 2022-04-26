@@ -682,4 +682,8 @@ function DeleteTempOrder()
         // TO DO alert message/warning
     });
 }
+
+$("#deleteAllTempOrder").click(function(){
+    $('input:checkbox').not(this).prop('checked', this.checked);
+});
 </script>	

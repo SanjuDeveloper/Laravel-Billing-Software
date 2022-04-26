@@ -18,7 +18,7 @@ class CreateTempOrdersTable extends Migration
             $table->string('productCode')->unique();
             $table->string('billNumber');
             $table->string('customerCode');
-            $table->string('productDisco');
+            $table->string('productDisco')->nullable();
             $table->string('productQuty');
             $table->string('productPrice');
             $table->string('billDate');
