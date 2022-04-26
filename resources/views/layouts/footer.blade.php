@@ -647,16 +647,24 @@ function AddTempOrder()
    table += "<tr>";
             table += "<td>"+number+"</td><td>" +productCode+ "</td>";                  
             table += "<td>" +  $('#product_name').val() + "</td>";
-            table += "<td>"+productQuty+"</td>";
+            table += "<td id='qty'>"+productQuty+"</td>";
             table += "<td>" +productPrice+ "</td>";
-            table += "<td>"+productGrand+"</td></tr>";
+            table += "<td id='grand'>"+productGrand+"</td></tr>";
 
    $.ajax({
         type: 'POST',
         url: "{{ route('tempOrder.create') }}",
         data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,billDate:billDate},
         success: function (data) {
-            $('#temprders').append(table);
+           // console.log(data);
+            var obj = JSON.parse(data);
+            if(obj.status === 'update'){
+                $('#qty').text(obj.qty);
+                $('#grand').text(obj.grand);
+            }else{
+                $('#temprders').append(table);
+            }
+            //$('#temprders').append(table);
             $('#product_name').val('');
             $('#product_code').val('');
             $('#PDIS').val('');
