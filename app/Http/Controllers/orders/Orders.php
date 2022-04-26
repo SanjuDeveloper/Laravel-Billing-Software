@@ -25,9 +25,9 @@ class Orders extends Controller
     $billDate     = $req->input('billDate');
 
     $getOrder = TempOrder::where('billNumber', $billNumber)
-                          ->orWhere('productCode', $productCode)
-                          ->orWhere('customerCode', $customerCode)
-                          ->orWhere('billDate', $billDate)
+                          ->Where('productCode', $productCode)
+                          ->Where('customerCode', $customerCode)
+                          ->Where('billDate', $billDate)
                           ->first();
     
     
