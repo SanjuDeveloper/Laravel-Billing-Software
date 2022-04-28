@@ -734,6 +734,9 @@ function DeleteTempOrders()
                             icon: "success",
                             successMode: true,
                             }); 
+                            $('input[type="checkbox"]:checked').each(function() {
+                                $(this).closest('tr').remove();               
+                            });
                             Uncheck();
                         }          
                     }
@@ -755,5 +758,12 @@ function Uncheck()
     $('input[type="checkbox"]:checked').each(function() {
         $(this).prop('checked',false);                
     });
+}
+
+function removeTR()
+{
+    $('input[type="checkbox"]:checked').each(function() {
+        $(this).closest('tr').remove();               
+    })
 }
 </script>	
