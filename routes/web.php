@@ -56,6 +56,7 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::get('/getcustomer/{val}', [CustomerController::class, 'getByname']);
     Route::post('/tempOrder', [Orders::class, 'AddTempOrder'])->name('tempOrder.create');
     Route::get('/tempOrderDelete', [Orders::class, 'DeleteTempOrder'])->name('tempOrder.delete');
+    Route::post('/tempOrderDeleteById', [Orders::class, 'DeleteTempOrderById'])->name('tempOrder.deleteById'); 
 });
 
 Route::get('/logout', function () {

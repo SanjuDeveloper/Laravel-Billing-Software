@@ -644,28 +644,25 @@ function AddTempOrder()
    let billDate     = $('#billDate').val();
    let count = $("#temprders").children("tr").length;
     let number  = parseInt(count)+1;
-   table += "<tr>";
-            table += "<td><input type='checkbox' style='width: 27px !important;height: 19px' id='tempOrderId'></td>";  
-            table += "<td>"+number+"</td><td>" +productCode+ "</td>";                  
-            table += "<td>" +  $('#product_name').val() + "</td>";
-            table += "<td id='qty'>"+productQuty+"</td>";
-            table += "<td>" +productPrice+ "</td>";
-            table += "<td id='grand'>"+productGrand+"</td></tr>";
+   
 
    $.ajax({
         type: 'POST',
         url: "{{ route('tempOrder.create') }}",
         data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,billDate:billDate},
         success: function (data) {
-           // console.log(data);
-            var obj = JSON.parse(data);
-            if(obj.status === 'update'){
-                $('#qty').text(obj.qty);
-                $('#grand').text(obj.grand);
-            }else{
-                $('#temprders').append(table);
+            console.log(data);
+            for(let i=0; i < data.length; i++){
+                //alert(data[i].id);
+                table += "<tr class='temp-checkbox'>";
+                table += "<td><input type='checkbox' style='width: 27px !important;height: 19px' id='tempOrderId' name='"+data[i].id +"'></td>";  
+                table += "<td>"+data[i].id +"</td><td>" +data[i].productCode+ "</td>";                  
+                table += "<td>" +  $('#product_name').val() + "</td>";
+                table += "<td id='qty'>"+data[i].productQuty+"</td>";
+                table += "<td>" +data[i].productPrice+ "</td>";
+                table += "<td id='grand'>"+data[i].productGrand+"</td></tr>";
             }
-            $('#tempOrderId').attr('name',obj.insertId);
+            $('#temprders').html(table);
             $('#product_name').val('');
             $('#product_code').val('');
             $('#PDIS').val('');
@@ -707,6 +704,23 @@ function DeleteTempOrders()
         } else {
             swal("Your record is safe!");
         }
+        });
+    }else{
+        var allIds = [];
+        $('input[type="checkbox"]:checked').each(function() {
+            //alert($(this).attr('name'));
+            allIds.push($(this).attr('name').split(" ")[0]);
+           
+        });
+
+        console.log(allIds);
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('tempOrder.deleteById') }}",
+            data: {ids:allIds},
+            success: function (data) {
+             alert(data);            
+            }
         });
     }
 

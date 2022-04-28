@@ -23,14 +23,11 @@ class Orders extends Controller
     $productPrice = $req->input('productPrice');
     $productGrand = $req->input('productGrand');
     $billDate     = $req->input('billDate');
-
     $getOrder = TempOrder::where('billNumber', $billNumber)
                           ->Where('productCode', $productCode)
                           ->Where('customerCode', $customerCode)
                           ->Where('billDate', $billDate)
-                          ->first();
-    
-    
+                          ->first();   
     if(!$getOrder){ 
       $obj = new TempOrder; 
       $obj->productCode  = $productCode;
@@ -42,11 +39,6 @@ class Orders extends Controller
       $obj->productGrand = $productGrand;
       $obj->billDate     = $billDate;
       $obj->save();
-      $response = array(
-        'insertId'=>$obj->id,
-        'status'=>'insert'
-     );
-
     }else{ 
       $newQty   = $getOrder->productQuty;
       $newTotal = $getOrder->productGrand;
@@ -55,21 +47,34 @@ class Orders extends Controller
       $obj = TempOrder::find($getOrder->id); 
       $obj->productQuty  = $updatedQty;
       $obj->productGrand = $updatedGrand;
-      $obj->update();
-      $action='update';
-      $response = array(
-        'insertId'=>$getOrder->id,
-        'qty'=>$updatedQty,
-        'grand'=>$updatedGrand,
-        'status'=>'update'
-     );
-    }  
+      $obj->update();     
+    } 
+    
+    $tempOrders = TempOrder::all();
       
-    return json_encode($response);
+    return response()->json($tempOrders);
   }
 
+  /**
+   * Delete all tempOrders
+   *
+   * * Returns product Id
+  */
   public function DeleteTempOrder()
   {
     TempOrder::truncate();
+  }
+
+   /**
+   * Delete all tempOrders By ID
+   *
+   * * Returns product Id
+  */
+  public function DeleteTempOrderById(Request $req)
+  {
+    //print_r($req->input('ids')); die();
+    $AllId = implode(",",$req->input('ids')); //echo $AllId; die();
+    TempOrder::whereIn('id', array($AllId))->delete();
+    //// $users = DB::table('temp_orders')->whereIn('id', array($AllId))->get()->delete(); 
   }
 }
