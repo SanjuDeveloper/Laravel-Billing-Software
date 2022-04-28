@@ -65,16 +65,19 @@ class Orders extends Controller
     TempOrder::truncate();
   }
 
-   /**
-   * Delete all tempOrders By ID
-   *
-   * * Returns product Id
+  /**
+  * Remove the specified resource from storage.
+  *
+  * @param  \App\Models\TempOrder  $req
+  * @return \Illuminate\Http\Response
   */
   public function DeleteTempOrderById(Request $req)
   {
-    //print_r($req->input('ids')); die();
-    $AllId = implode(",",$req->input('ids')); //echo $AllId; die();
-    TempOrder::whereIn('id', array($AllId))->delete();
-    //// $users = DB::table('temp_orders')->whereIn('id', array($AllId))->get()->delete(); 
+    if(TempOrder::destroy($req->input('ids'))){
+      return 'Success';
+    }else{
+      return 'Failed';
+    }
+
   }
 }

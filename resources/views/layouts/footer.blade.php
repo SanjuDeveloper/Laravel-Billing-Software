@@ -701,31 +701,59 @@ function DeleteTempOrders()
                 successMode: true,
                 });
          return false;
+         Uncheck();
         } else {
             swal("Your record is safe!");
+            Uncheck();
         }
         });
     }else{
-        var allIds = [];
-        $('input[type="checkbox"]:checked').each(function() {
-            //alert($(this).attr('name'));
-            allIds.push($(this).attr('name').split(" ")[0]);
-           
-        });
 
-        console.log(allIds);
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('tempOrder.deleteById') }}",
-            data: {ids:allIds},
-            success: function (data) {
-             alert(data);            
+        swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this details!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {                          
+                var allIds = [];
+                $('input[type="checkbox"]:checked').each(function() {
+                    allIds.push($(this).attr('name').split(" ")[0]);                
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('tempOrder.deleteById') }}",
+                    data: {ids:allIds},
+                    success: function (data) {
+                        if(data === 'Success'){
+                            swal({
+                            title: "Success!",
+                            text: "Order deleted successfully!",
+                            icon: "success",
+                            successMode: true,
+                            }); 
+                            Uncheck();
+                        }          
+                    }
+                });
+                return false;
+            }else {
+                swal("Your record is safe!");
+                Uncheck();
             }
         });
     }
-
 }
 $("#deleteAllTempOrder").click(function(){
     $('input:checkbox').not(this).prop('checked', this.checked);
 });
+
+function Uncheck()
+{
+    $('input[type="checkbox"]:checked').each(function() {
+        $(this).prop('checked',false);                
+    });
+}
 </script>	
