@@ -681,74 +681,80 @@ function DeleteTempOrder()
 }
 function DeleteTempOrders()
 {
-    if($('#deleteAllTempOrder').is(':checked')){
-        swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this details!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        })
-        .then((willDelete) => {
-            if (willDelete) {                          
-                DeleteTempOrder();
-                $('#temprders').html('');
-                $('#deleteAllTempOrder').prop('checked',false);
-                swal({
-                title: "Success!",
-                text: "Order deleted successfully!",
-                icon: "success",
-                successMode: true,
-                });
-         return false;
-         Uncheck();
-        } else {
-            swal("Your record is safe!");
+    if ($("#temprders input:checkbox:checked").length > 0)
+    {
+        if($('#deleteAllTempOrder').is(':checked')){
+            swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this details!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {                          
+                    DeleteTempOrder();
+                    $('#temprders').html('');
+                    $('#deleteAllTempOrder').prop('checked',false);
+                    swal({
+                    title: "Success!",
+                    text: "Order deleted successfully!",
+                    icon: "success",
+                    successMode: true,
+                    });
+            return false;
             Uncheck();
-        }
-        });
-    }else{
-
-        swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this details!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        })
-        .then((willDelete) => {
-            if (willDelete) {                          
-                var allIds = [];
-                $('input[type="checkbox"]:checked').each(function() {
-                    allIds.push($(this).attr('name').split(" ")[0]);                
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('tempOrder.deleteById') }}",
-                    data: {ids:allIds},
-                    success: function (data) {
-                        if(data === 'Success'){
-                            swal({
-                            title: "Success!",
-                            text: "Order deleted successfully!",
-                            icon: "success",
-                            successMode: true,
-                            }); 
-                            $('input[type="checkbox"]:checked').each(function() {
-                                $(this).closest('tr').remove();               
-                            });
-                            Uncheck();
-                        }          
-                    }
-                });
-                return false;
-            }else {
+            } else {
                 swal("Your record is safe!");
                 Uncheck();
             }
-        });
-    }
+            });
+        }else{
+
+            swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this details!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {                          
+                    var allIds = [];
+                    $('input[type="checkbox"]:checked').each(function() {
+                        allIds.push($(this).attr('name').split(" ")[0]);                
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('tempOrder.deleteById') }}",
+                        data: {ids:allIds},
+                        success: function (data) {
+                            if(data === 'Success'){
+                                swal({
+                                title: "Success!",
+                                text: "Order deleted successfully!",
+                                icon: "success",
+                                successMode: true,
+                                }); 
+                                $('input[type="checkbox"]:checked').each(function() {
+                                    $(this).closest('tr').remove();               
+                                });
+                                Uncheck();
+                            }          
+                        }
+                    });
+                    return false;
+                }else {
+                    swal("Your record is safe!");
+                    Uncheck();
+                }
+            });
+        }
+    }else{
+        swal("No Data Selected");
+    } 
 }
+
 $("#deleteAllTempOrder").click(function(){
     $('input:checkbox').not(this).prop('checked', this.checked);
 });
