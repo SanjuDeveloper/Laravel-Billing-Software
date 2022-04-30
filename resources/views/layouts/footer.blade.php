@@ -657,7 +657,7 @@ function AddTempOrder()
                 table += "<tr class='temp-checkbox'>";
                 table += "<td><input type='checkbox' style='width: 27px !important;height: 19px' id='tempOrderId' name='"+data[i].id +"'></td>";  
                 table += "<td>"+data[i].id +"</td><td>" +data[i].productCode+ "</td>";                  
-                table += "<td>" +  $('#product_name').val() + "</td>";
+                table += "<td>"+data[i].product_name+ "</td>";
                 table += "<td id='qty'>"+data[i].productQuty+"</td>";
                 table += "<td>" +data[i].productPrice+ "</td>";
                 table += "<td id='grand'>"+data[i].productGrand+"</td></tr>";

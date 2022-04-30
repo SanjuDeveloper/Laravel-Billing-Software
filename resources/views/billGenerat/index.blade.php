@@ -166,13 +166,13 @@
                             <td>
                                 <div class="form-group">
                                 <label class="text-white"><b>Discount Amt</b></label>
-                                <input type="text" class="form-control" name ="PDIS"  id ="PDIS"\>
+                                <input type="text" class="form-control" name ="PDIS" value="0"  id ="PDIS"\>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                 <label class="text-white"><b>Total Price</b></label>
-                                <input type="text" class="form-control" name ="TotalRS" id ="TotalRS"\>
+                                <input type="text" class="form-control" name ="TotalRS" readonly id ="TotalRS"\>
                                 </div>
                             </td>
                             <td width="15%" style="vertical-align:middle">

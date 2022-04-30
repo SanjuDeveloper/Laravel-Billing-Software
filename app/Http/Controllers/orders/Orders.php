@@ -5,6 +5,7 @@ namespace App\Http\Controllers\orders;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TempOrder;
+use App\Models\Products;
 
 class Orders extends Controller
 {
@@ -50,9 +51,9 @@ class Orders extends Controller
       $obj->update();     
     } 
     
-    $tempOrders = TempOrder::all();
-      
-    return response()->json($tempOrders);
+    $getAlltempOrders = TempOrder::join('products', 'temp_orders.productCode', '=', 'products.product_code')
+        ->get(['temp_orders.*', 'products.product_name']);
+    return response()->json($getAlltempOrders);
   }
 
   /**
