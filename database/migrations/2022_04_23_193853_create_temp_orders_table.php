@@ -23,6 +23,7 @@ class CreateTempOrdersTable extends Migration
             $table->string('productPrice');
             $table->string('billDate');
             $table->string('productGrand');
+            $table->boolean('status')->default(0)->change();
             $table->timestamps();
         });
     }

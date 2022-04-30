@@ -52,7 +52,8 @@ class Orders extends Controller
     } 
     
     $getAlltempOrders = TempOrder::join('products', 'temp_orders.productCode', '=', 'products.product_code')
-        ->get(['temp_orders.*', 'products.product_name']);
+                                    ->where('temp_orders.status', '=', 0)
+                                    ->get(['temp_orders.*', 'products.product_name']);
     return response()->json($getAlltempOrders);
   }
 
@@ -63,7 +64,8 @@ class Orders extends Controller
   */
   public function DeleteTempOrder()
   {
-    TempOrder::truncate();
+    //TempOrder::truncate();
+    TempOrder::where('status', 0)->delete();
   }
 
   /**
@@ -80,5 +82,21 @@ class Orders extends Controller
       return 'Failed';
     }
 
+  }
+
+  /**
+  * Update Status of Orders.
+  *
+  * @param  \App\Models\TempOrder  $req
+  * @return \Illuminate\Http\Response
+  */
+  public function PrintBill(Request $post)
+  {
+    if(TempOrder::where('billNumber', $post->input('billNumber'))->update(['status' => 1])){
+      return 'Success';
+    } else{
+      return 'Failed';
+    }
+    
   }
 }

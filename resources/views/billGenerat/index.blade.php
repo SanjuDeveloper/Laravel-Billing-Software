@@ -219,7 +219,7 @@
                         <tr>
                             <td colspan="2" onclick="tableToExcel('testTable', 'Student')" ><center><a class="btn btn-success" id="download" ><i class="fa fa-download"></i></a></center></td>
                             <td colspan="2" >
-                                <center><input type="submit" id="bgenerate" name="submit" value="Generete Bill" style="background-color:#1a3b5e;color:#ffffff;display:block;"></center>
+                                <center><input type="submit" id="bgenerate" name="submit" value="Generete Bill" style="background-color:#1ba126;color:#fafffa;display:block;"></center>
                                     
                             </td>
                             <td colspan="2" onclick="printbill();"><center><a class="btn btn-danger" id="print" ><i class="fa fa-print"></i></a></center></td>
