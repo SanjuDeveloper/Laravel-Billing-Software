@@ -653,8 +653,9 @@ function AddTempOrder()
         data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,billDate:billDate},
         success: function (data) {
             console.log(data);
+            let NetPayble = [];
             for(let i=0; i < data.length; i++){
-                //alert(data[i].id);
+                NetPayble.push(data[i].productGrand);
                 table += "<tr class='temp-checkbox'>";
                 table += "<td><input type='checkbox' style='width: 27px !important;height: 19px' id='tempOrderId' name='"+data[i].id +"'></td>";  
                 table += "<td>"+data[i].id +"</td><td>" +data[i].productCode+ "</td>";                  
@@ -663,6 +664,14 @@ function AddTempOrder()
                 table += "<td>" +data[i].productPrice+ "</td>";
                 table += "<td id='grand'>"+data[i].productGrand+"</td></tr>";
             }
+             // Creating variable to store the sum
+            var TotalPayed = 0;
+            
+            // Calculation the sum using forEach
+            NetPayble.forEach(x => {
+                TotalPayed += parseInt(x);
+            });
+            $('input[name=NetPayble]').val(TotalPayed);
             $('#temprders').html(table);
             $('#product_name').val('');
             $('#product_code').val('');

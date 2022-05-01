@@ -114,6 +114,8 @@ class Orders extends Controller
       'productPrice' => json_encode($productPrice),
       'billDate'     => $billDate,
       'productGrand' => json_encode($productGrand),
+      'NetPayble'    => $post->input('NetPayble'),
+      'Gst'          => $post->input('Gst'),
     ]);
    if($storeOrder){
      self::DeleteTempOrder();

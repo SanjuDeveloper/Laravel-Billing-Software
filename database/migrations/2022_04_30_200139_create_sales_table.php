@@ -23,6 +23,8 @@ class CreateSalesTable extends Migration
             $table->string('productPrice');
             $table->string('billDate');
             $table->string('productGrand');
+            $table->string('NetPayble');
+            $table->string('Gst');
             $table->boolean('status')->default(1)->change();
             $table->timestamps();
         });

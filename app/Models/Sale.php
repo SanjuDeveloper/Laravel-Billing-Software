@@ -24,6 +24,8 @@ class Sale extends Model
         'productPrice',
         'billDate',
         'productGrand', 
-        'status',      
+        'status', 
+        'NetPayble',
+        'Gst',     
     ];
 }
