@@ -776,7 +776,8 @@ function removeTR()
 $(document).on('click','#bgenerate',function(){
     let billNumber = $('#bill_no').val();
     $('#bgenerate').val('Processing.....');
-    $('#bgenerate').prop('disable',true);
+    $("#bgenerate").prop('disabled', true);
+
     $.ajax({
         type: 'POST',
         url: "{{ route('bill.print') }}",

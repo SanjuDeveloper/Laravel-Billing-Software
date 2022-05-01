@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TempOrder;
 use App\Models\Products;
+use App\Models\Sale;
 
 class Orders extends Controller
 {
@@ -52,8 +53,7 @@ class Orders extends Controller
     } 
     
     $getAlltempOrders = TempOrder::join('products', 'temp_orders.productCode', '=', 'products.product_code')
-                                    ->where('temp_orders.status', '=', 0)
-                                    ->get(['temp_orders.*', 'products.product_name']);
+                                   ->get(['temp_orders.*', 'products.product_name']);
     return response()->json($getAlltempOrders);
   }
 
@@ -64,8 +64,7 @@ class Orders extends Controller
   */
   public function DeleteTempOrder()
   {
-    //TempOrder::truncate();
-    TempOrder::where('status', 0)->delete();
+    TempOrder::truncate();
   }
 
   /**
@@ -92,11 +91,23 @@ class Orders extends Controller
   */
   public function PrintBill(Request $post)
   {
-    if(TempOrder::where('billNumber', $post->input('billNumber'))->update(['status' => 1])){
-      return 'Success';
-    } else{
-      return 'Failed';
+    $status='Filed';
+    $order_items = TempOrder::where('billNumber', $post->input('billNumber'))->get()->toArray();
+    foreach ($order_items as $item) 
+    {
+      //$item['id'] = null; (optional)
+      Sale::insert([
+        'productCode'  => $item['productCode'],
+        'billNumber'   => $item['billNumber'],
+        'customerCode' => $item['customerCode'],
+        'productDisco' => $item['productDisco'],
+        'productQuty'  => $item['productQuty'],
+        'productPrice' => $item['productPrice'],
+        'billDate'     => $item['billDate'],
+        'productGrand' => $item['productGrand']      
+      ]);
+      $status ='Success';
     }
-    
+    return 'Success';
   }
 }
