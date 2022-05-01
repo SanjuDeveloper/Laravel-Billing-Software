@@ -37,7 +37,6 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
     Route::view('/bill', 'billGenerat/index');
     Route::view('/main', 'main');
-    Route::view('/billprint', 'billGenerat/print');
     Route::view('/customerAdd', 'customer/add');
     Route::view('/addcategory', 'category/addCategory');
     Route::get('/change',   [LangController::class, 'change'])->name('changeLang');  
@@ -58,7 +57,8 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::post('/tempOrder', [Orders::class, 'AddTempOrder'])->name('tempOrder.create');
     Route::get('/tempOrderDelete', [Orders::class, 'DeleteTempOrder'])->name('tempOrder.delete');
     Route::post('/tempOrderDeleteById', [Orders::class, 'DeleteTempOrderById'])->name('tempOrder.deleteById'); 
-    Route::post('/printBill', [Orders::class, 'PrintBill'])->name('bill.print'); 
+    Route::post('/printBill', [Orders::class, 'PrintBill'])->name('bill.print');
+    Route::get('/billprint/{billNumber}',  [Orders::class, 'print']); //billGenerat/print
 });
 
 Route::get('/logout', function () {

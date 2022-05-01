@@ -633,7 +633,8 @@ $('#product_name').click(function(){
 
 function AddTempOrder()
 {
-    var table = '';
+   var table = '';
+   $('input[name=billNumber]').val($('#bill_no').val());
    let productCode  =  $('#product_code').val();
    let productDisco =  $('#PDIS').val();
    let productQuty  =  $('#Qty').val();
@@ -643,7 +644,7 @@ function AddTempOrder()
    let customerCode =  $('#customerCode').val(); 
    let billDate     = $('#billDate').val();
    let count = $("#temprders").children("tr").length;
-    let number  = parseInt(count)+1;
+   let number  = parseInt(count)+1;
    
 
    $.ajax({
@@ -772,7 +773,7 @@ function removeTR()
         $(this).closest('tr').remove();               
     })
 }
-
+/*
 $(document).on('click','#bgenerate',function(){
     let billNumber = $('#bill_no').val();
     $('#bgenerate').val('Processing.....');
@@ -785,10 +786,10 @@ $(document).on('click','#bgenerate',function(){
         success: function (data) {
             if(data === 'Success'){
                 DeleteTempOrder();
-                window.location.replace("{{ url('/billprint')}}");
+                window.location.replace("billprint/"+billNumber);  //  url: "deleteProduct/"+id,
             }          
         }
     });
     return false;
-});
+});*/
 </script>	

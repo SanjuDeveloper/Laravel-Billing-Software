@@ -95,19 +95,31 @@ class Orders extends Controller
     $order_items = TempOrder::where('billNumber', $post->input('billNumber'))->get()->toArray();
     foreach ($order_items as $item) 
     {
-      //$item['id'] = null; (optional)
-      Sale::insert([
-        'productCode'  => $item['productCode'],
-        'billNumber'   => $item['billNumber'],
-        'customerCode' => $item['customerCode'],
-        'productDisco' => $item['productDisco'],
-        'productQuty'  => $item['productQuty'],
-        'productPrice' => $item['productPrice'],
-        'billDate'     => $item['billDate'],
-        'productGrand' => $item['productGrand']      
-      ]);
-      $status ='Success';
-    }
-    return 'Success';
+      $productCode['productCode'][] = $item['productCode'];
+      $productDisco['productDisco'][] = $item['productDisco'];
+      $productQuty['productQuty'][]  = $item['productQuty'];
+      $productPrice['productPrice'][] = $item['productPrice'];
+      $productGrand['productGrand'][] = $item['productGrand'];
+    }  
+
+    $billNumber =  $order_items[0]['billNumber'];
+    $billDate   = $order_items[0]['billDate'];
+    $customerCode   = $order_items[0]['customerCode'];
+    $storeOrder =  Sale::insert([
+      'productCode'  => json_encode($productCode),
+      'billNumber'   => $billNumber,
+      'customerCode' => $customerCode,
+      'productDisco' => json_encode($productDisco),
+      'productQuty'  => json_encode($productQuty),
+      'productPrice' => json_encode($productPrice),
+      'billDate'     => $billDate,
+      'productGrand' => json_encode($productGrand),
+    ]);
+   if($storeOrder){
+     self::DeleteTempOrder();
+     echo 'success';
+   }else{
+     die('duplicate entry');
+   }
   }
 }

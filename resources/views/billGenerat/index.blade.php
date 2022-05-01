@@ -99,7 +99,8 @@
         </div>
 		<div class="container-fluid" style="padding:0 3%;overflow-y:auto;">
         <div class="bill p-3" style="background-color:lightgrey;overflow:auto">
-            <form id="myform" >
+            <form id="myform" action="{{ route('bill.print') }}" method="POST">
+                @csrf
                 <table style="font-size:14px;width:100%;">
                     <tbody>
                         <tr>
@@ -209,8 +210,7 @@
                             <td width="20%" class="text-center"><b>GST  %</b></td>
                             <td width="10%"><input name="GST" id="GST" value="18" readonly></td>
                             <td width="20%" class="text-center"><b>Grand Total</b></td>
-                            <td width="10%"><input name="GRAND" id="GRAND"></td>
-                            <input type="hidden" name="GSTAMOUNT" id="GSTAMOUNT">
+                            <td width="10%"><input name="NetPayble" id="GRAND"></td>
                         </tr>
                         
                         <tr>
@@ -220,7 +220,7 @@
                             <td colspan="2" onclick="tableToExcel('testTable', 'Student')" ><center><a class="btn btn-success" id="download" ><i class="fa fa-download"></i></a></center></td>
                             <td colspan="2" >
                                 <center><input type="submit" id="bgenerate" name="submit" value="Generete Bill" style="background-color:#1ba126;color:#fafffa;display:block;"></center>
-                                    
+                                <input type="hidden" name="billNumber" value="">     
                             </td>
                             <td colspan="2" onclick="printbill();"><center><a class="btn btn-danger" id="print" ><i class="fa fa-print"></i></a></center></td>
                         </tr>
