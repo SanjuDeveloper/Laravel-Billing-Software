@@ -117,11 +117,21 @@ class Orders extends Controller
       'NetPayble'    => $post->input('NetPayble'),
       'Gst'          => $post->input('Gst'),
     ]);
+
    if($storeOrder){
+
      self::DeleteTempOrder();
-     echo 'success';
+     return redirect('billprint/'.$billNumber);
+
    }else{
-     die('duplicate entry');
+    return Redirect::back()->withErrors(['msg' => 'Somthing Wen wrong Please try againg !']);
    }
+   
+  }
+
+  public function Print($billNumber)
+  {
+    $orders = Sale::all();
+    return view('billGenerat.print', compact('orders'));
   }
 }

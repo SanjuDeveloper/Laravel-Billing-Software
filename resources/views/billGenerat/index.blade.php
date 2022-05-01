@@ -95,6 +95,16 @@
 }
 </style>
         <div class="card-header py-3">
+        @if($errors->any())
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Failed!</strong> {{$errors->first()}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
+        <h4 class ></h4>
+       
            <h3 class="" style="text-shadow: 1px 1px 2px blue,0 0 0.2em darkblue;color: black;font-size: 30px;margin-left:40%;"> {{ __('app.bill.generate-bill') }}</h3>
         </div>
 		<div class="container-fluid" style="padding:0 3%;overflow-y:auto;">

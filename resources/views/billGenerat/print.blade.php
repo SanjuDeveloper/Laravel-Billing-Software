@@ -99,6 +99,11 @@
       </style>
 	</head>
 	<body id="invoice-POS">
+		<?php 
+	foreach($orders as $data){
+		$billNumber = $data['billNumber'];
+	}
+		?>
 	    <div class="container" >
 		 <center id="top">
 			  <div class="logo"></div>
@@ -110,7 +115,7 @@
 		  </center><!--End InvoiceTop-->
 		  <div id="mid">
 			  <div class="info">
-				<h2><span style="float:left">Contact Info</span> <span style="float:right">Bill No.45</span></h2>
+				<h2><span style="float:left">Contact Info</span> <span style="float:right">Bill No.{{ $billNumber}}</span></h2>
 				<div style="clear:both"></div>
 				<p> Name    : SANJU</br>
 					Address : NOIDA</br>

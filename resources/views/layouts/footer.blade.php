@@ -782,23 +782,5 @@ function removeTR()
         $(this).closest('tr').remove();               
     })
 }
-/*
-$(document).on('click','#bgenerate',function(){
-    let billNumber = $('#bill_no').val();
-    $('#bgenerate').val('Processing.....');
-    $("#bgenerate").prop('disabled', true);
 
-    $.ajax({
-        type: 'POST',
-        url: "{{ route('bill.print') }}",
-        data: {billNumber:billNumber},
-        success: function (data) {
-            if(data === 'Success'){
-                DeleteTempOrder();
-                window.location.replace("billprint/"+billNumber);  //  url: "deleteProduct/"+id,
-            }          
-        }
-    });
-    return false;
-});*/
 </script>	
