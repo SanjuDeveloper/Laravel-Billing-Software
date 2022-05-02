@@ -122,7 +122,7 @@
                         <tr>
                             <td><b>Customer Name</b></td>
                             <td><input name="cust_name" id="cust_name">
-                            <input type="hidden" id="customerCode" value="<?php echo (rand(50000,1000));?>">
+                            <input type="hidden" id="customerCode" name="customerCode" value="<?php echo (rand(50000,1000));?>">
                             </td>
                             <td class="text-center"><b>Customer Address</b></td>
                             <td rowspan="2"><textarea rows="4" class="form-control" name="coustomerAddress" id="Caddress" placeholder="Enter coustomer Address"style="border:1px solid black;margin-top:5px;"></textarea></td> 

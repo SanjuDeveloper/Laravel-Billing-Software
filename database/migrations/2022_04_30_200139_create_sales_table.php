@@ -14,17 +14,13 @@ class CreateSalesTable extends Migration
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->id();
-            $table->string('productCode')->unique();
+            $table->id();           
             $table->string('billNumber')->unique();
             $table->string('customerCode');
-            $table->string('productDisco')->nullable();
-            $table->string('productQuty');
-            $table->string('productPrice');
+            $table->string('customerName');
             $table->string('billDate');
-            $table->string('productGrand');
-            $table->string('NetPayble');
-            $table->string('Gst');
+            $table->string('GST');
+            $table->string('netPayable');
             $table->boolean('status')->default(1)->change();
             $table->timestamps();
         });

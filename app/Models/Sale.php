@@ -16,16 +16,12 @@ class Sale extends Model
      * @var string[]
      */
     protected $fillable = [
-        'productCode',
         'billNumber', 
         'customerCode',
-        'productDisco',
-        'productQuty',
-        'productPrice',
+        'customerName',        
         'billDate',
-        'productGrand', 
-        'status', 
-        'NetPayble',
-        'Gst',     
+        'GST',       
+        'netPayable',         
+        'status',    
     ];
 }

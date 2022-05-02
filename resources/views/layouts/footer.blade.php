@@ -636,12 +636,14 @@ function AddTempOrder()
    var table = '';
    $('input[name=billNumber]').val($('#bill_no').val());
    let productCode  =  $('#product_code').val();
+   let productName  =  $('#product_name').val();
    let productDisco =  $('#PDIS').val();
    let productQuty  =  $('#Qty').val();
    let productPrice =  $('#Price').val();
    let productGrand =  $('#TotalRS').val();
    let billNumber   =  $('#bill_no').val();
-   let customerCode =  $('#customerCode').val(); 
+   let customerCode =  $('#customerCode').val();
+   let customerName =  $('#cust_name').val(); 
    let billDate     = $('#billDate').val();
    let count = $("#temprders").children("tr").length;
    let number  = parseInt(count)+1;
@@ -650,7 +652,7 @@ function AddTempOrder()
    $.ajax({
         type: 'POST',
         url: "{{ route('tempOrder.create') }}",
-        data: {productCode:productCode,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,billDate:billDate},
+        data: {productCode:productCode,productName:productName,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,customerName:customerName,billDate:billDate},
         success: function (data) {
             console.log(data);
             let NetPayble = [];

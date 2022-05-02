@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\TempOrder;
 use App\Models\Products;
 use App\Models\Sale;
+use App\Models\OrderItem;
 
 class Orders extends Controller
 {
@@ -18,8 +19,10 @@ class Orders extends Controller
   public function AddTempOrder(Request $req)
   { 
     $productCode  = $req->input('productCode');
+    $productName  = $req->input('productName');
     $billNumber   = $req->input('billNumber');
     $customerCode = $req->input('customerCode');
+    $customerName = $req->input('customerName');
     $productDisco = $req->input('productDisco');
     $productQuty  = $req->input('productQuty');
     $productPrice = $req->input('productPrice');
@@ -33,8 +36,10 @@ class Orders extends Controller
     if(!$getOrder){ 
       $obj = new TempOrder; 
       $obj->productCode  = $productCode;
+      $obj->productName  = $productName;
       $obj->billNumber   = $billNumber;
-      $obj->customerCode = $customerCode;
+      $obj->customerCode = $customerCode; 
+      $obj->customerName = $customerName; 
       $obj->productDisco = $productDisco;
       $obj->productQuty  = $productQuty;
       $obj->productPrice = $productPrice;
@@ -92,40 +97,42 @@ class Orders extends Controller
   public function PrintBill(Request $post)
   {
     $status='Filed';
-    $order_items = TempOrder::where('billNumber', $post->input('billNumber'))->get()->toArray();
+
+      $obj =  new Sale;    
+      $billNumber = $post->input('billNumber');
+      $obj->billNumber   = $billNumber;
+      $obj->customerCode = $post->input('customerCode');
+      $obj->customerName = $post->input('cust_name');
+      $obj->billDate     = $post->input('bill_date');
+      $obj->NetPayble    = $post->input('NetPayble');
+      $obj->Gst          = $post->input('Gst');
+      $obj->save();
+      $insertId = $obj->id;
+    $order_items = TempOrder::where('billNumber', $billNumber)->get()->toArray();
+    
     foreach ($order_items as $item) 
     {
-      $productCode['productCode'][] = $item['productCode'];
-      $productDisco['productDisco'][] = $item['productDisco'];
-      $productQuty['productQuty'][]  = $item['productQuty'];
-      $productPrice['productPrice'][] = $item['productPrice'];
-      $productGrand['productGrand'][] = $item['productGrand'];
-    }  
+      $object = new OrderItem;
+      
+      $object->orderId       = $insertId;
+      $object->productCode   = $item['productCode'];
+      $object->productName   = $item['productName'];
+      $object->productDisco  = $item['productDisco'];
+      $object->productQuty   = $item['productQuty'];
+      $object->productPrice  = $item['productPrice'];
+      $object->productGrand  = $item['productGrand'];
+      $object->timestamp     = $post->input('bill_date');
+      $object->save();
+      $status='Success';  
+    }     
 
-    $billNumber =  $order_items[0]['billNumber'];
-    $billDate   = $order_items[0]['billDate'];
-    $customerCode   = $order_items[0]['customerCode'];
-    $storeOrder =  Sale::insert([
-      'productCode'  => json_encode($productCode),
-      'billNumber'   => $billNumber,
-      'customerCode' => $customerCode,
-      'productDisco' => json_encode($productDisco),
-      'productQuty'  => json_encode($productQuty),
-      'productPrice' => json_encode($productPrice),
-      'billDate'     => $billDate,
-      'productGrand' => json_encode($productGrand),
-      'NetPayble'    => $post->input('NetPayble'),
-      'Gst'          => $post->input('Gst'),
-    ]);
+    if($status=='Success'){
 
-   if($storeOrder){
-
-     self::DeleteTempOrder();
-     return redirect('billprint/'.$billNumber);
-
-   }else{
-    return Redirect::back()->withErrors(['msg' => 'Somthing Wen wrong Please try againg !']);
-   }
+      self::DeleteTempOrder();
+      return redirect('billprint/'.$billNumber);
+    }else{
+       return Redirect::back()->withErrors(['msg' => 'Somthing Wen wrong Please try againg !']);
+    }
    
   }
 
