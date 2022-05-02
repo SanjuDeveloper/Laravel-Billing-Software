@@ -127,13 +127,13 @@
 		  </center><!--End InvoiceTop-->
 		  <div id="mid">
 			  <div class="info">
-				<h2><span style="float:left">Contact Info</span> <span style="float:right">Bill No.{{ $billNumber}}</span></h2>
+				<h2><span style="float:left">Date :  {{ $billDate}}</span> <span style="float:right">Bill No.{{ $billNumber}}</span></h2><br>
+				<h2><span style="backgroundcolor:red;" >Contact Info</span></h2>
 				<div style="clear:both"></div>
 				<p> Name    : {{ $customerName}}</br>
 					Address : NOIDA</br>
 					Email   : bhattsanju.it@gmail.com</br>
 					Phone   : 97584521330</br>
-					Date    : {{ $billDate}} </br>
 				</p>
 			  </div>
           </div>
