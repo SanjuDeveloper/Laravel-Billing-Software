@@ -138,7 +138,10 @@ class Orders extends Controller
 
   public function Print($billNumber)
   {
-    $orders = Sale::all();
-    return view('billGenerat.print', compact('orders'));
+    //$orders = Sale::all();
+    $getOrderDetails = Sale::join('order_items', 'sales.id', '=', 'order_items.orderId')
+    ->get(['sales.*', 'order_items.*'])->toArray();
+
+    return view('billGenerat.print', compact('getOrderDetails'));
   }
 }

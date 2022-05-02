@@ -99,11 +99,23 @@
       </style>
 	</head>
 	<body id="invoice-POS">
-		<?php 
-	foreach($orders as $data){
-		$billNumber = $data['billNumber'];
+		@php 
+		$billNumber = $getOrderDetails[0]['billNumber'];
+		$customerName = $getOrderDetails[0]['customerName'];
+		$billDate = $getOrderDetails[0]['billDate'];
+		$GST = $getOrderDetails[0]['GST'];
+		$NetPayble = $getOrderDetails[0]['NetPayble'];
+		foreach($getOrderDetails as $data){
+		$productDetails = array(
+			'productName'  => $data['productName'],
+			'productDisco' => $data['productDisco'],
+			'productQuty'  => $data['productQuty'],
+			'productPrice' => $data['productPrice'],
+			'productGrand' => $data['productGrand']
+		);
+	
 	}
-		?>
+		@endphp
 	    <div class="container" >
 		 <center id="top">
 			  <div class="logo"></div>
@@ -117,10 +129,11 @@
 			  <div class="info">
 				<h2><span style="float:left">Contact Info</span> <span style="float:right">Bill No.{{ $billNumber}}</span></h2>
 				<div style="clear:both"></div>
-				<p> Name    : SANJU</br>
+				<p> Name    : {{ $customerName}}</br>
 					Address : NOIDA</br>
 					Email   : bhattsanju.it@gmail.com</br>
 					Phone   : 97584521330</br>
+					Date    : {{ $billDate}} </br>
 				</p>
 			  </div>
           </div>
@@ -160,11 +173,11 @@
                     </tr>
 					<tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">GST@</h2></td>
-                        <td class="payment"><h2>18</h2></td>
+                        <td class="payment"><h2>{{ $GST }}</h2></td>
                     </tr>
 					<tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">Net Payable Amount</h2></td>
-                        <td class="payment"><h2>20</h2></td>
+                        <td class="payment"><h2>{{ $NetPayble }}</h2></td>
                     </tr>
 
                 </table>
