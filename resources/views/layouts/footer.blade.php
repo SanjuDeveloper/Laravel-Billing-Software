@@ -421,7 +421,7 @@ $('#updateproduct').submit(function()
         }
     }
 
-    $(document).on('blur','#cust_name',function()
+    $(document).on('blur','#Cmobile',function()
     {
         
         var name = $(this).val();
@@ -438,7 +438,8 @@ $('#updateproduct').submit(function()
                 for(let i=0; i < customer.length;i++)
                 {
                    $(this).val(customer[i].customer_name);
-                   $('#Cmobile').val(customer[i].phone_no);
+                   //$('#Cmobile').val(customer[i].phone_no);
+                   $('#cust_name').val(customer[i].customer_name)
                    $('#Caddress').val(customer[i].address);
                    $('#customerCode').val(customer[i].customer_code);
                 }

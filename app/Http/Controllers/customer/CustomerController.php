@@ -39,7 +39,7 @@ class CustomerController extends Controller
 
    public function getByname($value)
    {
-      $customer = customers::where('customer_name', $value)->get();
+      $customer = customers::where('phone_no', $value)->get();
       return response()->json($customer);
    }
 }
