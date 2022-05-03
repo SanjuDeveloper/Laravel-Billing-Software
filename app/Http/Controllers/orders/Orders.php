@@ -8,6 +8,7 @@ use App\Models\TempOrder;
 use App\Models\Products;
 use App\Models\Sale;
 use App\Models\OrderItem;
+use App\Models\customers;
 
 class Orders extends Controller
 {
@@ -140,7 +141,8 @@ class Orders extends Controller
   {
     //$orders = Sale::all();
     $getOrderDetails = Sale::join('order_items', 'sales.id', '=', 'order_items.orderId')
-    ->get(['sales.*', 'order_items.*'])->toArray();
+                            ->join('customers', 'sales.customerCode', '=', 'customers.customer_code')
+                            ->get(['sales.*', 'order_items.*', 'customers.*'])->toArray();
 
     return view('billGenerat.print', compact('getOrderDetails'));
   }

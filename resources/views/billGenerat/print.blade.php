@@ -99,23 +99,6 @@
       </style>
 	</head>
 	<body id="invoice-POS">
-		@php 
-		$billNumber = $getOrderDetails[0]['billNumber'];
-		$customerName = $getOrderDetails[0]['customerName'];
-		$billDate = $getOrderDetails[0]['billDate'];
-		$GST = $getOrderDetails[0]['GST'];
-		$NetPayble = $getOrderDetails[0]['NetPayble'];
-		foreach($getOrderDetails as $data){
-		$productDetails = array(
-			'productName'  => $data['productName'],
-			'productDisco' => $data['productDisco'],
-			'productQuty'  => $data['productQuty'],
-			'productPrice' => $data['productPrice'],
-			'productGrand' => $data['productGrand']
-		);
-	
-	}
-		@endphp
 	    <div class="container" >
 		 <center id="top">
 			  <div class="logo"></div>
@@ -127,37 +110,34 @@
 		  </center><!--End InvoiceTop-->
 		  <div id="mid">
 			  <div class="info">
-				<h2><span style="float:left">Date :  {{ $billDate}}</span> <span style="float:right">Bill No.{{ $billNumber}}</span></h2><br>
+				<h2><span style="float:left">Date :  {{ $getOrderDetails[0]['billDate']}}</span> <span style="float:right">Bill No.{{ $getOrderDetails[0]['billNumber']}}</span></h2><br>
 				<h2><span style="backgroundcolor:red;" >Contact Info</span></h2>
 				<div style="clear:both"></div>
-				<p> Name    : {{ $customerName}}</br>
-					Address : NOIDA</br>
-					Email   : bhattsanju.it@gmail.com</br>
-					Phone   : 97584521330</br>
+				<p> Name    : {{ $getOrderDetails[0]['customerName']}}</br>
+					Address : {{  $getOrderDetails[0]['address'] }}</br>
+					Email   : {{ $getOrderDetails[0]['email'] }}</br>
+					Phone   : {{ $getOrderDetails[0]['phone_no'] }}</br>
 				</p>
 			  </div>
           </div>
 		  <div id="bot">
             <div id="table">
                 <table>
+
                     <tr class="tabletitle">
                         <th class="item"><p>Product</p></th>
                         <th class="Rate"><p>Prize</p></th>
 					    <th class="Hours"><p>Qty</p></th>
                         <th class="Rate"><p>AMT</p></th>
                     </tr>
-                    <tr class="service">
-                        <td class="tableitem"><p class="itemtext">20</p></td>
-                        <td class="tableitem"><p class="itemtext">30</p></td>
-                        <td class="tableitem"><p class="itemtext">40</p></td>
-                        <td class="tableitem"><p class="itemtext">50</p></td>
-                    </tr>
-                    <tr class="service">
-                        <td class="tableitem"><p class="itemtext">20</p></td>
-                        <td class="tableitem"><p class="itemtext">30</p></td>
-                        <td class="tableitem"><p class="itemtext">40</p></td>
-                        <td class="tableitem"><p class="itemtext">50</p></td>
-                    </tr>
+					@foreach($getOrderDetails as $data)
+						<tr class="service">
+							<td class="tableitem"><p class="itemtext">{{$data['productName']}}</p></td>
+							<td class="tableitem"><p class="itemtext">{{$data['productPrice']}}</p></td>
+							<td class="tableitem"><p class="itemtext">{{$data['productQuty']}}</p></td>
+							<td class="tableitem"><p class="itemtext">{{$data['productGrand']}}</p></td>
+						</tr>
+					@endforeach	
 								
                     <tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">Total Amount</h2></td>
@@ -169,15 +149,15 @@
                     </tr>
 					<tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">GST%</h2></td>
-                        <td class="payment"><h2>15</h2></td>
+                        <td class="payment"><h2>{{$getOrderDetails[0]['GST']}}</h2></td>
                     </tr>
 					<tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">GST@</h2></td>
-                        <td class="payment"><h2>{{ $GST }}</h2></td>
+                        <td class="payment"><h2></h2></td>
                     </tr>
 					<tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">Net Payable Amount</h2></td>
-                        <td class="payment"><h2>{{ $NetPayble }}</h2></td>
+                        <td class="payment"><h2>{{ $getOrderDetails[0]['NetPayble'] }}</h2></td>
                     </tr>
 
                 </table>
