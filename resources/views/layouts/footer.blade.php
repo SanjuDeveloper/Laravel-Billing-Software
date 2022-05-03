@@ -805,9 +805,12 @@ function removeTR()
     })
 }
 
-/*
-$('#bgenerate').click(function(){
-    $(this).prop('disabled',true);
-    $(this).val('Processing...');
-})*/
+function getBillNumber(){
+    $.get("{{ route('getmaxBillNumber') }}", function(data, status){
+        $('#bill_no').val(data);
+    });
+
+
+    
+}
 </script>	

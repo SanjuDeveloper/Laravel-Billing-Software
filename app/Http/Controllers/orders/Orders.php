@@ -149,4 +149,12 @@ class Orders extends Controller
     $getSales = OrderItem::where('billNumber', $billNumber)->get()->toArray();
     return view('billGenerat.print', compact('getOrderDetails','getSales'));
   }
+
+  public function GetMaxBillNuber()
+  {
+    //$price = Sale::max('billNumber');
+    $MaxbillNumber = Sale::orderBy('id', 'DESC')->skip(0)->take(1)->get('billNumber');
+    return $MaxbillNumber[0]['billNumber']+1;
+  }
+
 }

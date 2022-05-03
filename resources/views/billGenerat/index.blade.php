@@ -242,6 +242,7 @@
     <script type="text/javascript">
     window.onload = function (e) {
          DeleteTempOrder();
+         getBillNumber();
     };
 </script>
 @include('layouts/footer')

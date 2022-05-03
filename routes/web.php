@@ -58,7 +58,8 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::get('/tempOrderDelete', [Orders::class, 'DeleteTempOrder'])->name('tempOrder.delete');
     Route::post('/tempOrderDeleteById', [Orders::class, 'DeleteTempOrderById'])->name('tempOrder.deleteById'); 
     Route::post('/printBill', [Orders::class, 'PrintBill'])->name('bill.print');
-    Route::get('/billprint/{billNumber}',  [Orders::class, 'print']); //billGenerat/print
+    Route::get('/billprint/{billNumber}',  [Orders::class, 'print']);
+    Route::get('/getmaxBillNumber', [Orders::class, 'GetMaxBillNuber'])->name('getmaxBillNumber'); 
 });
 
 Route::get('/logout', function () {
