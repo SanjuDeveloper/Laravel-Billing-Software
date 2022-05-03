@@ -16,6 +16,7 @@ class OrderItem extends Model
      */
     protected $fillable = [
         'orderId',
+        'billNumber',
         'productCode',
         'productName',
         'productDisco',

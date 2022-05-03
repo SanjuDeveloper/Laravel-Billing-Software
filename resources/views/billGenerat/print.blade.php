@@ -30,7 +30,7 @@
 			  font-size: 1.5em;
 			  color: #222;
 			}
-			#invoice-POS h2 {
+			#invoice-POS h2,h4 {
 			  font-size:10px;
 			}
 			#invoice-POS h3 {
@@ -88,6 +88,7 @@
 			}
 			#invoice-POS .itemtext {
 			  font-size:10px;
+			  text-align: center !important;
 			}
 			#invoice-POS #legalcopy {
 			  margin-top: 5mm;
@@ -98,25 +99,27 @@
 }			
       </style>
 	</head>
+	
 	<body id="invoice-POS">
 	    <div class="container" >
 		 <center id="top">
 			  <div class="logo"></div>
 			  <div class="info"> 
-				<h2>Billing Software</h2>
-				<p>Noida Sector-62,<br/>U.P. 201307
+				<h2>Danu Transport</h2>
+				<p>Tnakpur,<br/>U.K. 262309
 				</p>
 			  </div><!--End Info-->
 		  </center><!--End InvoiceTop-->
 		  <div id="mid">
 			  <div class="info">
 				<h2><span style="float:left">Date :  {{ $getOrderDetails[0]['billDate']}}</span> <span style="float:right">Bill No.{{ $getOrderDetails[0]['billNumber']}}</span></h2><br>
-				<h2><span style="backgroundcolor:red;" >Contact Info</span></h2>
+				<h2><span style="background-color:  !important;" >Contact Info</span></h2>
 				<div style="clear:both"></div>
-				<p> Name    : {{ $getOrderDetails[0]['customerName']}}</br>
-					Address : {{  $getOrderDetails[0]['address'] }}</br>
-					Email   : {{ $getOrderDetails[0]['email'] }}</br>
-					Phone   : {{ $getOrderDetails[0]['phone_no'] }}</br>
+				<p>  
+					<b>Name</b>    : {{ $getOrderDetails[0]['customerName']}}</br>
+					<b>Address</b> : {{  $getOrderDetails[0]['address'] }}</br>
+					<b>Email</b>   : {{ $getOrderDetails[0]['email'] }}</br>
+					<b>Phone</b>   : {{ $getOrderDetails[0]['phone_no'] }}</br>
 				</p>
 			  </div>
           </div>
@@ -124,36 +127,36 @@
             <div id="table">
                 <table>
 
-                    <tr class="tabletitle">
+                    <tr class="tabletitle" >
                         <th class="item"><p>Product</p></th>
                         <th class="Rate"><p>Prize</p></th>
 					    <th class="Hours"><p>Qty</p></th>
                         <th class="Rate"><p>AMT</p></th>
                     </tr>
-					@foreach($getOrderDetails as $data)
-						<tr class="service">
+					@foreach($getSales as $data)
+						<tr class="service text-center">
 							<td class="tableitem"><p class="itemtext">{{$data['productName']}}</p></td>
 							<td class="tableitem"><p class="itemtext">{{$data['productPrice']}}</p></td>
 							<td class="tableitem"><p class="itemtext">{{$data['productQuty']}}</p></td>
-							<td class="tableitem"><p class="itemtext">{{$data['productGrand']}}</p></td>
+							<td class="tableitem"><p class="itemtext"> @php echo $grnad[] = $data['productGrand'] @endphp</p></td>
 						</tr>
 					@endforeach	
 								
                     <tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">Total Amount</h2></td>
-                        <td class="payment"><h2>500</h2></td>
+                        <td class="payment"><h2><?= $grand =  array_sum($grnad); ?></h2></td>
                     </tr>
 					<tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">Discount@</h2></td>
-                        <td class="payment"><h2>40</h2></td>
+                        <td class="payment"><h2>{{ $getOrderDetails[0]['discount']}}</h2></td>
                     </tr>
 					<tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">GST%</h2></td>
-                        <td class="payment"><h2>{{$getOrderDetails[0]['GST']}}</h2></td>
+                        <td class="payment"><h2>@php echo $gst = $getOrderDetails[0]['GST'] @endphp</h2></td>
                     </tr>
 					<tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">GST@</h2></td>
-                        <td class="payment"><h2></h2></td>
+                        <td class="payment"><h2><?= $GSTamount = round(($grand*$gst)/100); ?></h2></td>
                     </tr>
 					<tr class="tabletitle">
                         <td colspan="3" class="Rate"><h2 style="float:right">Net Payable Amount</h2></td>
@@ -166,7 +169,10 @@
 
                     <div id="legalcopy">
                         <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
-                        </p>
+                        </p><br>
+						<h4 style="text-align:center" class="Rate text-danger">Developed By @Sanju Bhatt (bhattsanju.it@gmail.com)</h4><br>
+							
+
                     </div>
 
                 </div>

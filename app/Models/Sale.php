@@ -20,7 +20,8 @@ class Sale extends Model
         'customerCode',
         'customerName',        
         'billDate',
-        'GST',       
+        'GST', 
+        'discount',      
         'netPayable',         
         'status',    
     ];

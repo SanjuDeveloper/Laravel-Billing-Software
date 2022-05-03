@@ -216,11 +216,11 @@
                     <tbody>
                         <tr>
                             <td><b>Discount Amount</b>	</td>
-                            <td><input name="totDiscount" id="totDiscount"></td>
+                            <td><input name="totDiscount" id="totDiscount" value='0'></td>
                             <td width="20%" class="text-center"><b>GST  %</b></td>
                             <td width="10%"><input name="Gst" id="GST" value="18" readonly></td>
                             <td width="20%" class="text-center"><b>Grand Total</b></td>
-                            <td width="10%"><input name="NetPayble" id="GRAND" readonly></td>
+                            <td width="10%"><input name="NetPayble" id="GRAND" readonly> <input type="hidden" name="netAmount"></td>
                         </tr>
                         
                         <tr>

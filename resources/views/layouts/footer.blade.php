@@ -673,7 +673,11 @@ function AddTempOrder()
             NetPayble.forEach(x => {
                 TotalPayed += parseInt(x);
             });
-            $('input[name=NetPayble]').val(TotalPayed);
+            
+            let GstAmount = $('#GST').val();
+            let amount = parseInt((TotalPayed * GstAmount) / 100);
+            $('input[name=NetPayble]').val(amount+TotalPayed);
+            $("input[name='netAmount']").val(amount+TotalPayed);
             $('#temprders').html(table);
             $('#product_name').val('');
             $('#product_code').val('');
@@ -685,6 +689,13 @@ function AddTempOrder()
     });
 }
 
+$(document).on('keyup', '#totDiscount',function()
+{  
+    let totalDiscount = $(this).val();
+    let GRAND = $("input[name='netAmount']").val();
+    let netDiscount = GRAND -  totalDiscount;
+    $('#GRAND').val(netDiscount);
+});
 function DeleteTempOrder()
 {
     $.get("{{ route('tempOrder.delete') }}", function(data, status){
@@ -784,5 +795,9 @@ function removeTR()
         $(this).closest('tr').remove();               
     })
 }
-
+/*
+$('#bgenerate').click(function(){
+    $(this).prop('disabled',true);
+    $(this).val('Processing...');
+})*/
 </script>	

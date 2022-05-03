@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\orders;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Models\TempOrder;
 use App\Models\Products;
@@ -107,6 +108,7 @@ class Orders extends Controller
       $obj->billDate     = $post->input('bill_date');
       $obj->NetPayble    = $post->input('NetPayble');
       $obj->Gst          = $post->input('Gst');
+      $obj->discount     = $post->input('totDiscount'); 
       $obj->save();
       $insertId = $obj->id;
     $order_items = TempOrder::where('billNumber', $billNumber)->get()->toArray();
@@ -116,6 +118,7 @@ class Orders extends Controller
       $object = new OrderItem;
       
       $object->orderId       = $insertId;
+      $object->billNumber    = $billNumber;
       $object->productCode   = $item['productCode'];
       $object->productName   = $item['productName'];
       $object->productDisco  = $item['productDisco'];
@@ -139,11 +142,11 @@ class Orders extends Controller
 
   public function Print($billNumber)
   {
-    //$orders = Sale::all();
-    $getOrderDetails = Sale::join('order_items', 'sales.id', '=', 'order_items.orderId')
-                            ->join('customers', 'sales.customerCode', '=', 'customers.customer_code')
-                            ->get(['sales.*', 'order_items.*', 'customers.*'])->toArray();
-
-    return view('billGenerat.print', compact('getOrderDetails'));
+    //$orders = Sale::all(); 
+    $getOrderDetails = Sale::join('customers', 'sales.customerCode', '=', 'customers.customer_code')
+                              ->where('sales.billNumber', $billNumber)
+                              ->get(['sales.*', 'customers.*']); 
+    $getSales = OrderItem::where('billNumber', $billNumber)->get()->toArray();
+    return view('billGenerat.print', compact('getOrderDetails','getSales'));
   }
 }

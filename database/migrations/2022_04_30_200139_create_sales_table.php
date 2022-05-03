@@ -16,11 +16,12 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();           
             $table->string('billNumber')->unique();
-            $table->string('customerCode');
+            $table->bigInteger('customerCode');
             $table->string('customerName');
             $table->string('billDate');
             $table->string('GST');
-            $table->string('netPayable');
+            $table->string('netPayable'); 
+            $table->bigInteger('discount')->default(0)->change();
             $table->boolean('status')->default(1)->change();
             $table->timestamps();
         });
