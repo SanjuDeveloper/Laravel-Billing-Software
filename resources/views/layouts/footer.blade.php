@@ -152,6 +152,9 @@
         {
             $('#Price').prop('readonly', true);
             $('#TotalRS').prop('readonly', true); 
+            $('#bgenerate').prop('disabled', true); 
+            $('#bgenerate').css('cursor', 'not-allowed');
+            
         }
         
     function fnExcelReport(){
@@ -195,7 +198,6 @@
 $(function(){
 
     disabled();
-
     $.ajaxSetup({
 		headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -633,7 +635,8 @@ $('#product_name').click(function(){
 
 function AddTempOrder()
 {
-   var table = '';
+
+    var table = '';
    $('input[name=billNumber]').val($('#bill_no').val());
    let productCode  =  $('#product_code').val();
    let productName  =  $('#product_name').val();
@@ -648,45 +651,50 @@ function AddTempOrder()
    let count = $("#temprders").children("tr").length;
    let number  = parseInt(count)+1;
    
-
-   $.ajax({
-        type: 'POST',
-        url: "{{ route('tempOrder.create') }}",
-        data: {productCode:productCode,productName:productName,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,customerName:customerName,billDate:billDate},
-        success: function (data) {
-            console.log(data);
-            let NetPayble = [];
-            for(let i=0; i < data.length; i++){
-                NetPayble.push(data[i].productGrand);
-                table += "<tr class='temp-checkbox'>";
-                table += "<td><input type='checkbox' style='width: 27px !important;height: 19px' id='tempOrderId' name='"+data[i].id +"'></td>";  
-                table += "<td>"+data[i].id +"</td><td>" +data[i].productCode+ "</td>";                  
-                table += "<td>"+data[i].product_name+ "</td>";
-                table += "<td id='qty'>"+data[i].productQuty+"</td>";
-                table += "<td>" +data[i].productPrice+ "</td>";
-                table += "<td id='grand'>"+data[i].productGrand+"</td></tr>";
+    if(productGrand ===''){
+        swal("Please add product First!");
+    }else{
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('tempOrder.create') }}",
+            data: {productCode:productCode,productName:productName,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,customerName:customerName,billDate:billDate},
+            success: function (data) {
+                console.log(data);
+                let NetPayble = [];
+                for(let i=0; i < data.length; i++){
+                    NetPayble.push(data[i].productGrand);
+                    table += "<tr class='temp-checkbox'>";
+                    table += "<td><input type='checkbox' style='width: 27px !important;height: 19px' id='tempOrderId' name='"+data[i].id +"'></td>";  
+                    table += "<td>"+data[i].id +"</td><td>" +data[i].productCode+ "</td>";                  
+                    table += "<td>"+data[i].product_name+ "</td>";
+                    table += "<td id='qty'>"+data[i].productQuty+"</td>";
+                    table += "<td>" +data[i].productPrice+ "</td>";
+                    table += "<td id='grand'>"+data[i].productGrand+"</td></tr>";
+                }
+                // Creating variable to store the sum
+                var TotalPayed = 0;
+                
+                // Calculation the sum using forEach
+                NetPayble.forEach(x => {
+                    TotalPayed += parseInt(x);
+                });
+                
+                let GstAmount = $('#GST').val();
+                let amount = parseInt((TotalPayed * GstAmount) / 100);
+                $('input[name=NetPayble]').val(amount+TotalPayed);
+                $("input[name='netAmount']").val(amount+TotalPayed);
+                $('#temprders').html(table);
+                $('#bgenerate').prop('disabled', false); 
+                $('#bgenerate').css('cursor', 'pointer');
+                $('#product_name').val('');
+                $('#product_code').val('');
+                $('#PDIS').val('0');
+                $('#Qty').val('');
+                $('#Price').val('');
+                $('#TotalRS').val('');  
             }
-             // Creating variable to store the sum
-            var TotalPayed = 0;
-            
-            // Calculation the sum using forEach
-            NetPayble.forEach(x => {
-                TotalPayed += parseInt(x);
-            });
-            
-            let GstAmount = $('#GST').val();
-            let amount = parseInt((TotalPayed * GstAmount) / 100);
-            $('input[name=NetPayble]').val(amount+TotalPayed);
-            $("input[name='netAmount']").val(amount+TotalPayed);
-            $('#temprders').html(table);
-            $('#product_name').val('');
-            $('#product_code').val('');
-            $('#PDIS').val('0');
-            $('#Qty').val('');
-            $('#Price').val('');
-            $('#TotalRS').val('');  
-        }
-    });
+        });
+}
 }
 
 $(document).on('keyup', '#totDiscount',function()
@@ -795,6 +803,7 @@ function removeTR()
         $(this).closest('tr').remove();               
     })
 }
+
 /*
 $('#bgenerate').click(function(){
     $(this).prop('disabled',true);
