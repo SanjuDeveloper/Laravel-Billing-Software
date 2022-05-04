@@ -812,8 +812,19 @@ function getBillNumber(){
     $.get("{{ route('getmaxBillNumber') }}", function(data, status){
         $('#bill_no').val(data);
     });
-
-
-    
 }
+
+$(document).on('change','#catDropdown',function(){
+    let id = $(this).val();
+    $.get("ProductByCat/"+id, function(data, status){
+        let string = '<select class="productsname"  name="allProduct"><option>-select-</option>';
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i].id);
+            string  += "<option value="+data[i].id+">"+data[i].product_name+"</option>";
+        } 
+        string  += "</select>";
+        //alert(string);
+        $(".productsname").replaceWith(string)   
+    });
+})
 </script>	

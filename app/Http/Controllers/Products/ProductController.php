@@ -146,4 +146,10 @@ class ProductController extends Controller
         $products = Products::where('product_name', $name)->get();
         return response()->json($products);
     }
+
+    public function getByCategory($CatId)
+    {
+        $products = Products::where('category', $CatId)->get();
+        return response()->json($products);
+    }
 }
