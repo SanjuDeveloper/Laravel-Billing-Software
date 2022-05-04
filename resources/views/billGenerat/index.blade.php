@@ -154,8 +154,8 @@
                             <td>
                                 <div class="form-group autocomplete">
                                 <label class="text-white"><b>Product Name</b></label>
-                                <input type="text" class="form-control productsname" name="name" id="product_name" placeholder="search..">
-                                </div>
+                                <input type="text" class="form-control productsname" name="name" id="product_name" placeholder="search..">  
+                            </div>
                             </td>
                             <td>
                                 <div class="form-group">

@@ -657,7 +657,6 @@ function AddTempOrder()
     var table = '';
    $('input[name=billNumber]').val($('#bill_no').val());
    let productCode  =  $('#product_code').val();
-   let productName  =  $('#product_name').val();
    let productDisco =  $('#PDIS').val();
    let productQuty  =  $('#Qty').val();
    let productPrice =  $('#Price').val();
@@ -668,14 +667,16 @@ function AddTempOrder()
    let billDate     = $('#billDate').val();
    let count = $("#temprders").children("tr").length;
    let number  = parseInt(count)+1;
-   
+   let productName  =  $('#product_name').val();
+   let select = $('#allProduct').val();
+
     if(productGrand ===''){
         swal("Please add product First!");
     }else{
         $.ajax({
             type: 'POST',
             url: "{{ route('tempOrder.create') }}",
-            data: {productCode:productCode,productName:productName,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,customerName:customerName,billDate:billDate},
+            data: {productCode:productCode,productName:productName,productDisco:productDisco,productQuty:productQuty,productPrice:productPrice,productGrand:productGrand,billNumber:billNumber,customerCode:customerCode,customerName:customerName,billDate:billDate,select:select},
             success: function (data) {
                 console.log(data);
                 let NetPayble = [];
@@ -837,7 +838,7 @@ $(document).on('change','#catDropdown',function(){
             string  += "<option value="+data[i].product_name+">"+data[i].product_name+"</option>";
         } 
         string  += "</select>";
-        //alert(string);
+        //alert(string);  //BHATTJI
         $(".productsname").replaceWith(string)   
     });
 })

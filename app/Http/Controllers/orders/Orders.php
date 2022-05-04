@@ -30,6 +30,12 @@ class Orders extends Controller
     $productPrice = $req->input('productPrice');
     $productGrand = $req->input('productGrand');
     $billDate     = $req->input('billDate');
+
+    if($productName==''){
+      $productName = $req->input('select');
+    }else{
+      $productName =$productName;
+    }
     $getOrder = TempOrder::where('billNumber', $billNumber)
                           ->Where('productCode', $productCode)
                           ->Where('customerCode', $customerCode)
