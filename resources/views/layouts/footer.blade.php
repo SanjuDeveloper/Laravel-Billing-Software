@@ -556,9 +556,9 @@ var countries = ["Afghanistan","Albania","Algeria","Andorra"];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 
-$('#product_name').keyup(function(){
-   var product  = $(this).val();
-   var allProducts = [];
+function AutoSearchProduct(product)
+{
+    var allProducts = [];
         $.ajax({
             type: 'GET',
             url: "getProduct/"+product,
@@ -579,11 +579,26 @@ $('#product_name').keyup(function(){
             }
         })
         return false;
-});   
+}
+
+$('#product_name').keyup(function(){
+   var product  = $(this).val();
+   AutoSearchProduct(product);
+   
+});
+$(document).on('change','#allProduct',function(){
+    let product = $(this).val();
+    AutoFillProductsDetails(product); //BHATTJI
+});
 
 $(document).on('blur','#product_name',function()
 {  
     var name = $(this).val();        
+    AutoFillProductsDetails(name);
+});
+
+function AutoFillProductsDetails(name)
+{
     $.ajax({
         type: 'GET',
         url: "ProductByName/"+name,
@@ -604,8 +619,7 @@ $(document).on('blur','#product_name',function()
         }
     })
     return false;
-});
-
+}
 $('#Qty').keyup(function(){
     $('#TotalRS').val($(this).val()* $('#Price').val());
 });
@@ -817,10 +831,10 @@ function getBillNumber(){
 $(document).on('change','#catDropdown',function(){
     let id = $(this).val();
     $.get("ProductByCat/"+id, function(data, status){
-        let string = '<select class="productsname"  name="allProduct"><option>-select-</option>';
+        let string = '<select class="productsname"  id="allProduct"><option>-select-</option>';
         for (let i = 0; i < data.length; i++) {
             console.log(data[i].id);
-            string  += "<option value="+data[i].id+">"+data[i].product_name+"</option>";
+            string  += "<option value="+data[i].product_name+">"+data[i].product_name+"</option>";
         } 
         string  += "</select>";
         //alert(string);
