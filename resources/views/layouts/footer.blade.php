@@ -343,10 +343,13 @@ $('#updateproduct').submit(function()
         categoryList = obj;
         $("#Pcategory").html('');
         let string = '<option value="1">'+currentVal+'</option>';
+        let catDropdown = '<option>-select-</option>';
         for (let i = 0; i < categoryList.length; i++) {
             string  += "<option value="+categoryList[i].id+">"+categoryList[i].name+"</option>";
+            catDropdown  += "<option value="+categoryList[i].id+">"+categoryList[i].name+"</option>";
         }  
-        $("#Pcategory").append(string);      
+        $("#Pcategory").append(string); 
+        $("#catDropdown").append(catDropdown);      
         });
     
 
@@ -616,11 +619,11 @@ $('#PDIS').keyup(function(){
 });
 
 $('#product_name').click(function(){
-    var customer = $('#cust_name').val();
+    var customer = $('#Cmobile').val();
     if (customer == ""){
         swal("Customer details can not be empty!");  
-        $('#cust_name').css('border','1px solid red'); 
-        $('#cust_name').focus();
+        $('#Cmobile').css('border','1px solid red'); 
+        $('#Cmobile').focus();
     }
 
     let Caddress  = $('#Caddress').val();
