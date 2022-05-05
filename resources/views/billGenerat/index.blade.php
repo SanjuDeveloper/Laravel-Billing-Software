@@ -173,6 +173,7 @@
                                 <div class="form-group">
                                 <label class="text-white"><b>{{__('app.bill.qty')}}</b></label>
                                 <input type="text" class="form-control" name ="Qty" id="Qty" \>
+                                <input type="hidden" id="pQty">
                                 </div>
                             </td>
                             <td>

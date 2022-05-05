@@ -614,12 +614,15 @@ function AutoFillProductsDetails(name)
                 $('#Qty').val('1');
                 $('#Price').val(data[i].product_price);
                 $('#TotalRS').val($('#Qty').val()* $('#Price').val());
+                $('#pQty').val(data[i].total_product);
             }
+
             
         }
     })
     return false;
 }
+
 $('#Qty').keyup(function(){
     $('#TotalRS').val($(this).val()* $('#Price').val());
 });
@@ -659,6 +662,7 @@ function AddTempOrder()
    let productCode  =  $('#product_code').val();
    let productDisco =  $('#PDIS').val();
    let productQuty  =  $('#Qty').val();
+   let availablrQty  =  $('#pQty').val();
    let productPrice =  $('#Price').val();
    let productGrand =  $('#TotalRS').val();
    let billNumber   =  $('#bill_no').val();
@@ -672,7 +676,11 @@ function AddTempOrder()
 
     if(productGrand ===''){
         swal("Please add product First!");
-    }else{
+         
+    }else if(parseInt(productQuty) > parseInt(availablrQty)){
+            swal("Requested Quantity is not available");
+            $('#Qty').val($('#pQty').val());
+        }else{
         $.ajax({
             type: 'POST',
             url: "{{ route('tempOrder.create') }}",
@@ -830,7 +838,14 @@ function getBillNumber(){
 }
 
 $(document).on('change','#catDropdown',function(){
-    let id = $(this).val();
+    var customer = $('#Cmobile').val();
+    if (customer == ""){
+        swal("Customer details can not be empty!");  
+        $('#Cmobile').css('border','1px solid red'); 
+        $('#Cmobile').focus();
+        $(this).val('<option>-select-</option');
+    }else{
+        let id = $(this).val();
     $.get("ProductByCat/"+id, function(data, status){
         let string = '<select class="productsname"  id="allProduct"><option>-select-</option>';
         for (let i = 0; i < data.length; i++) {
@@ -841,5 +856,6 @@ $(document).on('change','#catDropdown',function(){
         //alert(string);  //BHATTJI
         $(".productsname").replaceWith(string)   
     });
+    }
 })
 </script>	
