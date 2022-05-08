@@ -135,9 +135,12 @@ class Orders extends Controller
       $object->save();
       $status='Success';  
       $productQty = Products::where('product_code', $item['productCode'])->first(); 
-      $QtyUpdate = Products::find('14');  // TODO pass product code  $item['productCode']
-      $QtyUpdate->total_product  = (($productQty->total_product)-($item['productQuty']));
-      $QtyUpdate->update(); 
+      $updates = array(
+        'total_product'=> ($productQty->total_product)-($item['productQuty']),
+      );
+      
+      $QtyUpdate = Products::where('product_code', $item['productCode'])->update($updates); 
+     
     }     
 
     if($status=='Success'){
