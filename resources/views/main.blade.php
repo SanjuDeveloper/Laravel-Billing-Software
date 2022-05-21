@@ -9,14 +9,13 @@
 
             <!-- Main Content -->
             <div id="content">
-
+            
                 <!-- Topbar -->
                 @include('layouts/topbar')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-
-                @include('layouts/dashboard-graphs')
+                @include('layouts/dashboard-graphs',['totalshale'=>$shaleArray])
 
                 <!-- /.container-fluid -->
 

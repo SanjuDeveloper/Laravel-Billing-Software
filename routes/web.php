@@ -6,7 +6,8 @@ use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\Locale\LangController;
-use App\Http\Controllers\orders\Orders;  
+use App\Http\Controllers\orders\Orders;
+use App\Http\Controllers\Dashboard\DashboardController;   
 //use App\Http\Controllers;
 
 
@@ -36,9 +37,10 @@ Route::view('/signup', 'account/signup');
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
     Route::view('/bill', 'billGenerat/index');
-    Route::view('/main', 'main');
+    //Route::view('/main', 'main'); 
     Route::view('/customerAdd', 'customer/add');
     Route::view('/addcategory', 'category/addCategory');
+    Route::get('/main',   [DashboardController::class, 'index'])->name('dashboard'); 
     Route::get('/change',   [LangController::class, 'change'])->name('changeLang');  
     Route::get('/viewProduct', [ProductController::class, 'index'])->name('viewProduct.get');
     Route::get('/addProduct', [ProductController::class, 'get'])->name('addproduct.get');
