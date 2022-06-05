@@ -11,6 +11,8 @@ class DashboardController extends Controller
     public function index()
     {
         $todayShale = [];
+        $monthlyShale = [];
+        $annualShale = [];
         $today =  date('Y-m-d');
         $mothDate =  date("Y-m-t", strtotime($today));
         $totalShale = Sale::all();
