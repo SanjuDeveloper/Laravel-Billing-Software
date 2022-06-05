@@ -10,6 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $todayShale = [];
         $today =  date('Y-m-d');
         $mothDate =  date("Y-m-t", strtotime($today));
         $totalShale = Sale::all();
@@ -23,9 +24,9 @@ class DashboardController extends Controller
         }
 
         $shaleArray = array(
-            'today' => array_sum($todayShale),
-            'monthly' => array_sum($monthlyShale),
-            'annual' => array_sum($annualShale),
+            'today' => array_sum($todayShale) > 0 ? array_sum($todayShale) : 0 ,
+            'monthly' => array_sum($monthlyShale) > 0 ? array_sum($monthlyShale) : 0,
+            'annual' => array_sum($annualShale) > 0 ? array_sum($annualShale) :0,
         );
         //print_r($shaleArray); die();
         //$totalShale = Sale::where('status', 1)->sum('NetPayble');

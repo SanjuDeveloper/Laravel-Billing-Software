@@ -23,9 +23,6 @@
             <!-- End of Main Content -->
 
             @include('layouts/footer')
-
-        <h1> this is testing</h1>  
-
 </body>
 
 </html>
