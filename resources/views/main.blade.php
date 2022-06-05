@@ -24,7 +24,7 @@
 
             @include('layouts/footer')
 
-          
+        <h1> this is testing</h1>  
 
 </body>
 
