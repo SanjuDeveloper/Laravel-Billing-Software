@@ -34,4 +34,6 @@ class DashboardController extends Controller
         //$totalShale = Sale::where('status', 1)->sum('NetPayble');
        return view('main', compact('shaleArray'));
     }
+
+    // .Metamass password:   garlic pool live habit cause illegal brown message laundry metal sick shoulder
 }
