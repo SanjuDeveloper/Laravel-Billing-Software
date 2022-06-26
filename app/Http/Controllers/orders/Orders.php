@@ -104,15 +104,14 @@ class Orders extends Controller
   */
   public function PrintBill(Request $post)
   {
-    $status='Filed';
-
+    $status='Filed';   
       $obj =  new Sale;    
       $billNumber = $post->input('billNumber');
       $obj->billNumber   = $billNumber;
       $obj->customerCode = $post->input('customerCode');
       $obj->customerName = $post->input('cust_name');
       $obj->billDate     = $post->input('bill_date');
-      $obj->NetPayble    = $post->input('NetPayble');
+      $obj->netPayable    = $post->input('NetPayble');
       $obj->Gst          = $post->input('Gst');
       $obj->discount     = $post->input('totDiscount'); 
       $obj->save();

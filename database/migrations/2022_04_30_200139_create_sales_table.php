@@ -21,7 +21,7 @@ class CreateSalesTable extends Migration
             $table->string('billDate');
             $table->string('GST');
             $table->string('netPayable'); 
-            $table->bigInteger('discount')->default(0)->change();
+            $table->bigInteger('discount');
             $table->boolean('status')->default(1)->change();
             $table->timestamps();
         });
