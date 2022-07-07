@@ -10,9 +10,23 @@ use App\Models\Products;
 use App\Models\Sale;
 use App\Models\OrderItem;
 use App\Models\customers;
+use App\Models\Categories;
 
 class Orders extends Controller
 {
+
+
+   /**
+     * get all categories
+     *
+     * * Returns categories
+     */
+    public function get()
+    {
+        $categories = Categories::all();
+        return view('Invoice.index', compact('categories'));
+    }
+
   /**
    * Save the products
    *

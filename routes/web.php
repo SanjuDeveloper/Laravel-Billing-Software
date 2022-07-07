@@ -36,9 +36,10 @@ Route::view('/signup', 'account/signup');
 
 Route::group(['middleware' => ['checklogin']], function () {
     Route::view('/dashboard', 'dashboard');
-    Route::view('/bill', 'billGenerat/index');
-    //Route::view('/main', 'main'); 
+    Route::view('/bill-old', 'billGenerat/index');
+    //Route::view('/main', 'main');  
     Route::view('/customerAdd', 'customer/add');
+    Route::get('/bill', [Orders::class, 'get']);
     Route::view('/addcategory', 'category/addCategory');
     Route::get('/main',   [DashboardController::class, 'index'])->name('dashboard'); 
     Route::get('/change',   [LangController::class, 'change'])->name('changeLang');  
@@ -49,7 +50,7 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::get('/deleteProduct/{id}', [ProductController::class, 'delete']);
     Route::get('/ProductByCat/{id}', [ProductController::class, 'getByCategory']);
     Route::get('/getProduct/{val}', [ProductController::class, 'search']);
-    Route::get('/ProductByName/{name}', [ProductController::class, 'SearchByName']);  
+    Route::get('/ProductByName/{name}', [ProductController::class, 'SearchByName']); 
     Route::post('/updateProduct', [ProductController::class, 'update'])->name('updateProduct.post');
     Route::get('/viewCategory', [CategoryController::class, 'get'])->name('viewCategory.get');
     Route::post('/addcategory', [CategoryController::class, 'store'])->name('addpcategory.post');

@@ -858,4 +858,27 @@ $(document).on('change','#catDropdown',function(){
     });
     }
 })
+
+function getItem(id)
+{
+    $.get("ProductByCat/"+id, function(data, status){
+        let html = '';
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i].id);
+            html  += "<div class='item-head'>";
+            html  += "<div class='card border-left-primary item-body shadow'>";
+            html  += "<div style='height:20% !important;'>";
+            html  += "<div class='row no-gutters text-center' style='background-color: #e79edb;'>";
+            html  += "<div class='col mr-2'>"
+            html  += "<div class='mb-0 font-weight-bold text-gray-800'>"+data[i].product_name+"</div>";
+            html  += "</div>";
+            html  += "</div>";
+            html  += "</div>";
+            html  += "</div>";
+            html  += "</div>";
+        } 
+        $('#rep_data').html(html);
+    });
+}
+
 </script>	
